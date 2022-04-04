@@ -7,7 +7,7 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.Route;
 
-@Route("/")
+@Route("")
 public class MainView extends AppLayout {
 
     public MainView() {

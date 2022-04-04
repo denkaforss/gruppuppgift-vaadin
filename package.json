@@ -123,28 +123,6 @@
     "@vaadin/build-status-plugin": "./target/plugins/build-status-plugin",
     "@vaadin/theme-live-reload-plugin": "./target/plugins/theme-live-reload-plugin",
     "@vaadin/theme-loader": "./target/plugins/theme-loader",
-<<<<<<< Updated upstream
-    "chokidar": "^3.5.0",
-    "compression-webpack-plugin": "4.0.1",
-    "css-loader": "5.2.7",
-    "esbuild-loader": "2.15.1",
-    "extra-watch-webpack-plugin": "1.0.3",
-    "extract-loader": "5.1.0",
-    "file-loader": "6.2.0",
-    "fork-ts-checker-webpack-plugin": "6.2.1",
-    "glob": "7.1.6",
-    "html-webpack-plugin": "4.5.1",
-    "lit-css-loader": "0.1.0",
-    "loader-utils": "2.0.0",
-    "typescript": "4.5.3",
-    "webpack": "4.46.0",
-    "webpack-cli": "4.9.2",
-    "webpack-dev-server": "4.7.4",
-    "webpack-merge": "4.2.2",
-    "workbox-core": "6.5.0",
-    "workbox-precaching": "6.5.0",
-    "workbox-webpack-plugin": "6.5.0"
-=======
     "glob": "7.1.6",
     "mkdirp": "1.0.4",
     "rollup-plugin-brotli": "3.1.0",
@@ -154,7 +132,6 @@
     "workbox-build": "6.5.0",
     "workbox-core": "6.5.0",
     "workbox-precaching": "6.5.0"
->>>>>>> Stashed changes
   },
   "vaadin": {
     "dependencies": {
@@ -274,43 +251,23 @@
       "lit": "2.1.4"
     },
     "devDependencies": {
-<<<<<<< Updated upstream
-      "chokidar": "^3.5.0",
-      "compression-webpack-plugin": "4.0.1",
-      "css-loader": "5.2.7",
-      "esbuild-loader": "2.15.1",
-      "extra-watch-webpack-plugin": "1.0.3",
-      "extract-loader": "5.1.0",
-      "file-loader": "6.2.0",
-      "fork-ts-checker-webpack-plugin": "6.2.1",
       "glob": "7.1.6",
-      "html-webpack-plugin": "4.5.1",
-      "lit-css-loader": "0.1.0",
-      "loader-utils": "2.0.0",
       "typescript": "4.5.3",
-      "webpack": "4.46.0",
-      "webpack-cli": "4.9.2",
-      "webpack-dev-server": "4.7.4",
-      "webpack-merge": "4.2.2",
-      "workbox-core": "6.5.0",
-      "workbox-precaching": "6.5.0",
-      "workbox-webpack-plugin": "6.5.0"
-    },
-    "hash": "437ed5a98627afd0018fda2adf98a36e0c761ff124f2cc6aee9cf53a7b29531c"
-=======
-      "glob": "7.1.6",
-      "mkdirp": "1.0.4",
-      "rollup-plugin-brotli": "3.1.0",
-      "typescript": "4.5.3",
-      "vite": "v2.8.6",
-      "vite-plugin-checker": "0.3.4",
-      "workbox-build": "6.5.0",
       "workbox-core": "6.5.0",
       "workbox-precaching": "6.5.0"
     },
-    "hash": "5dbcfe26ee739f33d71ea08d908d9dac9de6aa815151a6576869cfdd91dde097"
->>>>>>> Stashed changes
+    "glob": "7.1.6",
+    "hash": "5dbcfe26ee739f33d71ea08d908d9dac9de6aa815151a6576869cfdd91dde097",
+    "mkdirp": "1.0.4",
+    "rollup-plugin-brotli": "3.1.0",
+    "typescript": "4.5.3",
+    "vite": "v2.8.6",
+    "vite-plugin-checker": "0.3.4",
+    "workbox-build": "6.5.0",
+    "workbox-core": "6.5.0",
+    "workbox-precaching": "6.5.0"
   },
+  "hash": "5dbcfe26ee739f33d71ea08d908d9dac9de6aa815151a6576869cfdd91dde097",
   "overrides": {
     "@vaadin/bundles": "$@vaadin/bundles",
     "@vaadin/accordion": "$@vaadin/accordion",
@@ -421,14 +378,10 @@
     "@vaadin/vaadin-crud": "$@vaadin/vaadin-crud",
     "@vaadin/vaadin-grid-pro": "$@vaadin/vaadin-grid-pro",
     "@vaadin/vaadin-rich-text-editor": "$@vaadin/vaadin-rich-text-editor",
+    "@polymer/polymer": "$@polymer/polymer",
     "@vaadin/common-frontend": "$@vaadin/common-frontend",
     "construct-style-sheets-polyfill": "$construct-style-sheets-polyfill",
-    "lit": "$lit",
-    "@polymer/polymer": "$@polymer/polymer",
-<<<<<<< Updated upstream
-    "chokidar": "$chokidar"
-=======
-    "date-fns": "$date-fns"
->>>>>>> Stashed changes
+    "date-fns": "$date-fns",
+    "lit": "$lit"
   }
 }
