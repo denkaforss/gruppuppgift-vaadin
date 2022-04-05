@@ -24,7 +24,7 @@ public class Album {
     private String albumName;
 
     @Column
-    @NotEmpty
+    /*@NotEmpty*/
     @Getter
     @Setter
     private LocalDate releaseYear;
@@ -41,10 +41,10 @@ public class Album {
     @Setter
     private Artist artist;
 
-    public Album(String albumName, LocalDate releaseYear, Set<Songs> songsSet, Artist artist) {
+    public Album(String albumName, LocalDate releaseYear/*, Set<Songs> songsSet*/, Artist artist) {
         this.albumName = albumName;
         this.releaseYear = releaseYear;
-        this.songsSet = songsSet;
+        /*this.songsSet = songsSet;*/
         this.artist = artist;
     }
 
