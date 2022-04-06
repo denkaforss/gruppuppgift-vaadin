@@ -76,12 +76,12 @@ public class GruppuppgiftVaadinApplication implements AppShellConfigurator {
             album3.setAlbumName(album3.getAlbumName());
             songsRepo.save(songs3);
 
-            Artist artist4 = new Artist("Fourth artist", LocalDate.of(2001, 1, 1), "Spain");
+            Artist artist4 = new Artist("Bullet For My Valentine", LocalDate.of(2001, 1, 1), "Spain");
             artistRepo.save(artist4);
 
-            Album album4 = new Album("Fourth album", LocalDate.of(2002, 2, 2), artist4);
+            Album album4 = new Album("Fever", LocalDate.of(2010, 2, 2), artist4);
             album4.setArtist(artist4);
-            album4.setImagePath("/images/avantasia.jpg");
+            album4.setImagePath("/images/fever.jpg");
             albumRepo.save(album4);
 
             Songs songs4 = new Songs("Fourth song", 149, artist4, album4);
