@@ -41,6 +41,12 @@ public class Album {
     @Setter
     private Artist artist;
 
+    @ManyToOne
+    @JoinColumn(name = "appUser_id")
+    @Getter
+    @Setter
+    private AppUser appUser;
+
     public Album(String albumName, LocalDate releaseYear/*, Set<Songs> songsSet*/, Artist artist) {
         this.albumName = albumName;
         this.releaseYear = releaseYear;
