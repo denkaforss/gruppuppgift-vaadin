@@ -54,6 +54,5 @@ public class Album {
         this.appUser = appUser;
     }
 
-    public Album() {
-    }
+    public Album() {}
 }

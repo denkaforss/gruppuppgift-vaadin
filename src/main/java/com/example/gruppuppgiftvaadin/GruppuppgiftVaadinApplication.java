@@ -14,6 +14,7 @@ import com.vaadin.flow.theme.lumo.Lumo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
@@ -27,7 +28,11 @@ public class GruppuppgiftVaadinApplication implements AppShellConfigurator {
     }
 
     @Bean
-    CommandLineRunner init(ArtistRepo artistRepo, AlbumRepo albumRepo, SongsRepo songsRepo, AppUserRepo appUserRepo) {
+    CommandLineRunner init(
+            ArtistRepo artistRepo,
+            AlbumRepo albumRepo,
+            SongsRepo songsRepo,
+            AppUserRepo appUserRepo) {
         return args -> {
 
             AppUser appUser = new AppUser("Sven-Olof", "123");
