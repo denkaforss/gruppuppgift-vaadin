@@ -1,8 +1,6 @@
 package com.example.gruppuppgiftvaadin.backend.services;
 
 import com.example.gruppuppgiftvaadin.backend.entities.Album;
-import com.example.gruppuppgiftvaadin.backend.entities.Album;
-import com.example.gruppuppgiftvaadin.backend.repositories.AlbumRepo;
 import com.example.gruppuppgiftvaadin.backend.repositories.AlbumRepo;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +21,10 @@ public class AlbumService {
         } else {
             return albumRepo.search(filter);
         }
+    }
+
+    public Album findAlbumById(int id) {
+        return albumRepo.findById(id).orElseThrow();
     }
 
     public Album saveAlbum(Album album) {return albumRepo.save(album);}

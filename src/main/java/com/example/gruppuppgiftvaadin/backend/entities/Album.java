@@ -41,6 +41,11 @@ public class Album {
     @Setter
     private Artist artist;
 
+    @Column
+    @Getter
+    @Setter
+    private String imagePath;
+
     public Album(String albumName, LocalDate releaseYear/*, Set<Songs> songsSet*/, Artist artist) {
         this.albumName = albumName;
         this.releaseYear = releaseYear;
