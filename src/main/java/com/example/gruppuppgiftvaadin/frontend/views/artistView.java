@@ -5,8 +5,10 @@ import com.example.gruppuppgiftvaadin.backend.services.ArtistService;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 
 @Route(value = "/", layout = Header.class)
+@AnonymousAllowed
 public class artistView extends VerticalLayout {
 
     ArtistService artistService;

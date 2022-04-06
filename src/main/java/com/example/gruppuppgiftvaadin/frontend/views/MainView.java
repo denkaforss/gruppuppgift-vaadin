@@ -7,10 +7,12 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 
 @Route("applayout")
+@AnonymousAllowed
 public class MainView extends AppLayout {
 
     public MainView() {
