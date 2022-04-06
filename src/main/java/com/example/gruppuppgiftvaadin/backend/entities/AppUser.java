@@ -48,5 +48,8 @@ public class AppUser {
 
     public AppUser() {}
 
-
+    public AppUser(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }

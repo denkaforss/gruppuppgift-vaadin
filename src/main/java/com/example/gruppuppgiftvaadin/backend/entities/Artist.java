@@ -53,11 +53,10 @@ public class Artist {
 
     public Artist(){}
 
-    public Artist(String artistName, LocalDate startingYear, String homeCountry/*, Set<Songs> songsSet, Set<Album> albumSet*/) {
+    public Artist(String artistName, LocalDate startingYear, String homeCountry, AppUser appUser) {
         this.artistName = artistName;
         this.startingYear = startingYear;
         this.homeCountry = homeCountry;
-        /*this.songsSet = songsSet;
-        this.albumSet = albumSet;*/
+        this.appUser = appUser;
     }
 }

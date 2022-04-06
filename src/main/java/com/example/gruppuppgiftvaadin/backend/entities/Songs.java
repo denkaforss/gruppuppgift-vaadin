@@ -45,10 +45,11 @@ public class Songs {
 
     public Songs(){}
 
-    public Songs(String songName, int songLength, Artist artist, Album album) {
+    public Songs(String songName, int songLength, Artist artist, Album album, AppUser appUser) {
         this.songName = songName;
         this.songLength = songLength;
         this.artist = artist;
         this.album = album;
+        this.appUser = appUser;
     }
 }

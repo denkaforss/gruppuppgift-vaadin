@@ -47,11 +47,11 @@ public class Album {
     @Setter
     private AppUser appUser;
 
-    public Album(String albumName, LocalDate releaseYear/*, Set<Songs> songsSet*/, Artist artist) {
+    public Album(String albumName, LocalDate releaseYear, Artist artist, AppUser appUser) {
         this.albumName = albumName;
         this.releaseYear = releaseYear;
-        /*this.songsSet = songsSet;*/
         this.artist = artist;
+        this.appUser = appUser;
     }
 
     public Album() {
