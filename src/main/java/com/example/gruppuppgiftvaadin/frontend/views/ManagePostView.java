@@ -5,7 +5,6 @@ import com.example.gruppuppgiftvaadin.backend.services.AlbumService;
 import com.example.gruppuppgiftvaadin.components.BlogForm;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.charts.model.Dial;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.Icon;
@@ -33,7 +32,7 @@ public class ManagePostView extends VerticalLayout {
         grid.addComponentColumn(album -> {
             Button button = new Button(new Icon(VaadinIcon.CLOSE), evt -> {
                 Notification.show(album.getAlbumName());
-                albumService.deleteById(album.getId());
+                albumService.deleteAlbum(album);
                 updateItems();
 
             });

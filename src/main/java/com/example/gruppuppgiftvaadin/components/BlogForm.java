@@ -23,7 +23,7 @@ public class BlogForm extends FormLayout {
     private void handleSave() {
         Album album = binder.validate().getBinder().getBean();
         if (album.getId() == 0) ;
-        albumService.save(album);
+        albumService.saveAlbum(album);
 
         setAlbum(null);
         managePostView.updateItems();
