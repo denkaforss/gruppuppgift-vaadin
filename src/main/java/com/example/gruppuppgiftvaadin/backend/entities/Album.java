@@ -41,18 +41,30 @@ public class Album {
     @Setter
     private Artist artist;
 
+    @ManyToOne
+    @JoinColumn(name = "appUser_id")
+    @Getter
+    @Setter
+    private AppUser appUser;
+
     @Column
     @Getter
     @Setter
     private String imagePath;
 
-    public Album(String albumName, LocalDate releaseYear/*, Set<Songs> songsSet*/, Artist artist) {
+    @Column
+    @Getter
+    @Setter
+    private String detailedInfo;
+
+
+    public Album(String albumName, LocalDate releaseYear/*, Set<Songs> songsSet*/, Artist artist, AppUser appUser, String detailedInfo) {
         this.albumName = albumName;
         this.releaseYear = releaseYear;
-        /*this.songsSet = songsSet;*/
         this.artist = artist;
+        this.appUser = appUser;
+        this.detailedInfo = detailedInfo;
     }
 
-    public Album() {
-    }
+    public Album() {}
 }
