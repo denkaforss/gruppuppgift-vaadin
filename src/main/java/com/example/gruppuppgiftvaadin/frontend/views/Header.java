@@ -18,16 +18,17 @@ public class Header extends AppLayout {
     public Header() {
         configureNavbar();
 
+        Tab artistView = new Tab("Artist View");
+
+        Tabs tabs = new Tabs(artistView);
+        tabs.setOrientation(Tabs.Orientation.VERTICAL);
+
+        addToDrawer(tabs);
         addToNavbar(navbar);
     }
 
     private void configureNavbar() {
         DrawerToggle toggle = new DrawerToggle();
-
-        Tab artistView = new Tab("Artist View");
-
-        Tabs tabs = new Tabs(artistView);
-        tabs.setOrientation(Tabs.Orientation.VERTICAL);
 
         Image logo = new Image("/images/mythictunes.png", "MythicTunes");
 
@@ -48,4 +49,6 @@ public class Header extends AppLayout {
         navbar.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
         navbar.setPadding(true);
     }
+
+
 }
