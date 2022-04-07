@@ -1,11 +1,14 @@
 package com.example.gruppuppgiftvaadin.frontend.components;
 
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 public class AlbumDetails extends VerticalLayout {
+
+    Button close = new Button("Close");
 
     Image albumImage = new Image("/images/avantasia.jpg", "src");
     H2 albumTitle = new H2("The Wicked Symphony");
@@ -19,8 +22,12 @@ public class AlbumDetails extends VerticalLayout {
         this.setVisible(false);
 
         albumImage.setWidth("80%");
+        close.addClickListener(click -> {
+            this.setVisible(false);
+        });
 
         add(
+                close,
                 albumImage,
                 albumTitle,
                 albumDescription,
