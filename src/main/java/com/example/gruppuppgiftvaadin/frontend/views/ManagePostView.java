@@ -13,9 +13,10 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 
 @Route(value = "/manageposts",layout = Header.class)
-
+@AnonymousAllowed
 public class ManagePostView extends VerticalLayout {
 
     Grid<Album> grid = new Grid<>(Album.class,false);

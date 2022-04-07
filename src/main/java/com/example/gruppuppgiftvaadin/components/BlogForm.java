@@ -4,6 +4,7 @@ import com.example.gruppuppgiftvaadin.backend.entities.Album;
 import com.example.gruppuppgiftvaadin.backend.services.AlbumService;
 import com.example.gruppuppgiftvaadin.frontend.views.ManagePostView;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -16,7 +17,7 @@ public class BlogForm extends FormLayout {
     TextField title = new TextField("Title");
     TextField albumName = new TextField("Album Name");
     TextField artistName = new TextField("Artist Name");
-    TextField releaseYear = new TextField("Release year");
+    DatePicker releaseYear = new DatePicker("Release year");
     Button saveButton = new Button("Save");
 
 
