@@ -42,11 +42,16 @@ public class AlbumView extends FlexLayout {
             albumImage.setHeight("250px");
             albumImage.setWidth("250px");
 
+            albumDetails = new AlbumDetails(album, this);
             albumLayout.setSizeUndefined();
             albumLayout.setAlignItems(Alignment.CENTER);
             albumLayout.add(albumTitle, albumImage, artistName);
             albumLayout.addClickListener(click -> {
+                if (!albumDetails.isVisible()){
                 this.add(albumDetails = new AlbumDetails(album, this));
+            } else {
+                    albumDetails.setVisible(false);
+                }
             });
 
             layout.setFlexDirection(FlexDirection.ROW);
