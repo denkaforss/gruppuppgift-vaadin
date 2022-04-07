@@ -5,41 +5,47 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 
 public class Header extends AppLayout {
 
+    HorizontalLayout navbar = new HorizontalLayout();
+
     public Header() {
+        configureNavbar();
+
+        addToNavbar(navbar);
+    }
+
+    private void configureNavbar() {
         DrawerToggle toggle = new DrawerToggle();
-
-        Image logo = new Image("/images/mythictunes.png", "MythicTunes");
-        logo.setHeight("40px");
-
-        H1 title = new H1("MythicTunes");
-        title.getStyle()
-                .set("font-size", "var(--lumo-font-size-l)")
-                .set("margin", "0");
 
         Tab artistView = new Tab("Artist View");
 
         Tabs tabs = new Tabs(artistView);
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
 
+        Image logo = new Image("/images/mythictunes.png", "MythicTunes");
+
+        Button logoutButton = new Button("Logout", evt -> PrincipalUtil.logout());
         Button loginButton = new Button("Login", evt ->
                 UI.getCurrent().navigate(LoginView.class));
 
-        Button logoutButton = new Button("Logout", evt -> PrincipalUtil.logout());
-
-        addToDrawer(tabs);
-        addToNavbar(toggle, logo);
+        navbar.add(toggle, logo);
 
         if (PrincipalUtil.isLoggedIn()) {
-            addToNavbar(logoutButton);
+            navbar.add(logoutButton);
         } else {
-            addToNavbar(loginButton);
+            navbar.add(loginButton);
         }
+
+        navbar.setWidthFull();
+        navbar.setJustifyContentMode(FlexComponent.JustifyContentMode.BETWEEN);
+        navbar.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
+        navbar.setPadding(true);
     }
 }
