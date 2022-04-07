@@ -21,17 +21,17 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 public class AlbumView extends FlexLayout {
 
     AlbumService albumService;
-    private AlbumDetails albumDetails = new AlbumDetails();
+    private AlbumDetails albumDetails;
     private FlexLayout content;
 
     public AlbumView(AlbumService albumService) {
         this.albumService = albumService;
         content = renderAlbum();
         content.setWidthFull();
-        albumDetails.setMaxWidth("30%");
+/*        albumDetails.setMaxWidth("30%");*/
         this.setSizeFull();
 
-        add(content, albumDetails);
+        add(content /*albumDetails*/);
     }
 
     private FlexLayout renderAlbum() {
@@ -50,7 +50,7 @@ public class AlbumView extends FlexLayout {
             albumLayout.setAlignItems(Alignment.CENTER);
             albumLayout.add(albumTitle, albumImage, artistName);
             albumLayout.addClickListener(click -> {
-                albumDetails.setVisible(true);
+                this.add(albumDetails = new AlbumDetails(album));
             });
 
             layout.setFlexDirection(FlexDirection.ROW);

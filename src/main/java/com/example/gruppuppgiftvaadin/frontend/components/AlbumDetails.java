@@ -1,16 +1,27 @@
 package com.example.gruppuppgiftvaadin.frontend.components;
 
+import com.example.gruppuppgiftvaadin.backend.entities.Album;
+import com.example.gruppuppgiftvaadin.backend.entities.AppUser;
+import com.example.gruppuppgiftvaadin.backend.entities.Artist;
+import com.example.gruppuppgiftvaadin.backend.repositories.AlbumRepo;
+import com.example.gruppuppgiftvaadin.backend.repositories.AppUserRepo;
+import com.example.gruppuppgiftvaadin.backend.repositories.ArtistRepo;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.time.LocalDate;
 
 public class AlbumDetails extends VerticalLayout {
+
 
     Button close = new Button("Close");
 
     Image albumImage = new Image("/images/avantasia.jpg", "src");
+
     H2 albumTitle = new H2("The Wicked Symphony");
     Paragraph albumDescription = new Paragraph("The Wicked Symphony är det fjärde power metalalbumet skapat av Avantasia, ett av Tobias Sammets projekt. På skivan medverkar flertalet musiker från diverse olika band, exempelvis Tim \"Ripper\" Owens som tidigare sjöng i Judas Priest och Iced Earth. Den släpptes den 3 april 2010, samtidigt som albumet Angel of Babylon släpptes. De gavs ut både som en samlingsbox med båda albumen tillsammans och som egna album. Det är den andra delen av \"The Scarecrow Saga\". ");
     H2 artistName = new H2("Avantasia");
@@ -18,8 +29,8 @@ public class AlbumDetails extends VerticalLayout {
             "\n" +
             "Skillnaden mellan Edguy och Avantasia, utom medlemmar, är att Avatasias låtar handlar mer om kärlek. Samt att Avantasia är mer inriktade mot fantasi, likt Nightwish. ");
 
-    public AlbumDetails() {
-        this.setVisible(false);
+    public AlbumDetails(Album album) {
+        this.setVisible(true);
 
         albumImage.setWidth("80%");
         close.addClickListener(click -> {
