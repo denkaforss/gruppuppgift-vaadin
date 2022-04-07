@@ -37,12 +37,19 @@ public class Songs {
     @Setter
     private Album album;
 
+    @ManyToOne
+    @JoinColumn(name = "appUser_id")
+    @Getter
+    @Setter
+    private AppUser appUser;
+
     public Songs(){}
 
-    public Songs(String songName, int songLength, Artist artist, Album album) {
+    public Songs(String songName, int songLength, Artist artist, Album album, AppUser appUser) {
         this.songName = songName;
         this.songLength = songLength;
         this.artist = artist;
         this.album = album;
+        this.appUser = appUser;
     }
 }

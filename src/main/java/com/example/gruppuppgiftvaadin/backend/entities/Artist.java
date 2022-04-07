@@ -45,13 +45,24 @@ public class Artist {
     @Setter
     public Set<Album> albumSet;
 
+    @ManyToOne
+    @JoinColumn(name = "appUser_id")
+    @Getter
+    @Setter
+    private AppUser appUser;
+
+    @Column
+    @Getter
+    @Setter
+    private String detailedInfo;
+
     public Artist(){}
 
-    public Artist(String artistName, LocalDate startingYear, String homeCountry/*, Set<Songs> songsSet, Set<Album> albumSet*/) {
+    public Artist(String artistName, LocalDate startingYear, String homeCountry, AppUser appUser, String detailedInfo) {
         this.artistName = artistName;
         this.startingYear = startingYear;
         this.homeCountry = homeCountry;
-        /*this.songsSet = songsSet;
-        this.albumSet = albumSet;*/
+        this.appUser = appUser;
+        this.detailedInfo = detailedInfo;
     }
 }
