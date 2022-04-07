@@ -1,16 +1,22 @@
 package com.example.gruppuppgiftvaadin.frontend.views;
 
+import com.example.gruppuppgiftvaadin.backend.security.PrincipalUtil;
 import com.example.gruppuppgiftvaadin.backend.services.AlbumService;
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 
 @PageTitle("Album View | MythicTunes")
 @Route(value = "/", layout = Header.class)
+@AnonymousAllowed
 public class AlbumView extends FlexLayout {
 
     AlbumService albumService;

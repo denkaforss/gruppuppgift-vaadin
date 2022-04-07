@@ -51,12 +51,18 @@ public class Artist {
     @Setter
     private AppUser appUser;
 
+    @Column
+    @Getter
+    @Setter
+    private String detailedInfo;
+
     public Artist(){}
 
-    public Artist(String artistName, LocalDate startingYear, String homeCountry, AppUser appUser) {
+    public Artist(String artistName, LocalDate startingYear, String homeCountry, AppUser appUser, String detailedInfo) {
         this.artistName = artistName;
         this.startingYear = startingYear;
         this.homeCountry = homeCountry;
         this.appUser = appUser;
+        this.detailedInfo = detailedInfo;
     }
 }
