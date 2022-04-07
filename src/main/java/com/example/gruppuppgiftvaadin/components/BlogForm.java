@@ -4,6 +4,7 @@ import com.example.gruppuppgiftvaadin.backend.entities.Album;
 import com.example.gruppuppgiftvaadin.backend.services.AlbumService;
 import com.example.gruppuppgiftvaadin.frontend.views.ManagePostView;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
@@ -26,6 +27,12 @@ public class BlogForm extends FormLayout {
 
         setAlbum(null);
         managePostView.updateItems();
+
+        this.getParent().ifPresent(component -> {
+            if(component instanceof Dialog){
+                ((Dialog) component).close();
+            }
+        });
     }
 
 
@@ -38,6 +45,7 @@ public class BlogForm extends FormLayout {
         this.managePostView = managePostView;
         this.albumService = albumService;
         binder.bindInstanceFields(this);
+        setVisible(false);
         saveButton.addClickListener(evt -> handleSave());
 
         add(title,albumName,artistName,releaseYear,saveButton);

@@ -5,6 +5,8 @@ import com.example.gruppuppgiftvaadin.backend.services.AlbumService;
 import com.example.gruppuppgiftvaadin.components.BlogForm;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
+import com.vaadin.flow.component.charts.model.Dial;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -61,7 +63,18 @@ public class ManagePostView extends VerticalLayout {
 
         HorizontalLayout mainContent = new HorizontalLayout(grid,blogForm);
         mainContent.setSizeFull();
-        add(mainContent);
+
+        Button button = new Button("Add new album", evt -> {
+            Dialog dialog = new Dialog();
+            BlogForm dialogForm = new BlogForm(albumService, this);
+            dialogForm.setAlbum(new Album());
+            dialog.add(dialogForm);
+            dialog.open();
+
+        });
+
+        add(mainContent, button);
+
     }
     public void updateItems(){
         grid.setItems(albumService.findAll());
