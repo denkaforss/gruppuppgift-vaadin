@@ -1,21 +1,15 @@
 package com.example.gruppuppgiftvaadin.frontend.components;
 
 import com.example.gruppuppgiftvaadin.backend.entities.Album;
-import com.example.gruppuppgiftvaadin.backend.entities.AppUser;
-import com.example.gruppuppgiftvaadin.backend.entities.Artist;
-import com.example.gruppuppgiftvaadin.backend.repositories.AlbumRepo;
-import com.example.gruppuppgiftvaadin.backend.repositories.AppUserRepo;
-import com.example.gruppuppgiftvaadin.backend.repositories.ArtistRepo;
+import com.example.gruppuppgiftvaadin.frontend.views.AlbumView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.time.LocalDate;
 
 public class AlbumDetails extends VerticalLayout {
+    AlbumView albumView;
 
 
     Button close = new Button("Close");
@@ -29,12 +23,13 @@ public class AlbumDetails extends VerticalLayout {
             "\n" +
             "Skillnaden mellan Edguy och Avantasia, utom medlemmar, är att Avatasias låtar handlar mer om kärlek. Samt att Avantasia är mer inriktade mot fantasi, likt Nightwish. ");
 
-    public AlbumDetails(Album album) {
+    public AlbumDetails(Album album, AlbumView albumView) {
         this.setVisible(true);
+        this.setWidth("30%");
 
         albumImage.setWidth("80%");
         close.addClickListener(click -> {
-            this.setVisible(false);
+            albumView.remove(this);
         });
 
         add(

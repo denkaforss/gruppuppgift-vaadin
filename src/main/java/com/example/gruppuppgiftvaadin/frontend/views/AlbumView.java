@@ -1,14 +1,10 @@
 package com.example.gruppuppgiftvaadin.frontend.views;
 
-import com.example.gruppuppgiftvaadin.backend.security.PrincipalUtil;
 import com.example.gruppuppgiftvaadin.backend.services.AlbumService;
 import com.example.gruppuppgiftvaadin.frontend.components.AlbumDetails;
-import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -50,7 +46,7 @@ public class AlbumView extends FlexLayout {
             albumLayout.setAlignItems(Alignment.CENTER);
             albumLayout.add(albumTitle, albumImage, artistName);
             albumLayout.addClickListener(click -> {
-                this.add(albumDetails = new AlbumDetails(album));
+                this.add(albumDetails = new AlbumDetails(album, this));
             });
 
             layout.setFlexDirection(FlexDirection.ROW);
