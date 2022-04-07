@@ -9,17 +9,15 @@ import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 public class AlbumDetails extends VerticalLayout {
-    AlbumView albumView;
+    private AlbumView albumView;
 
+    private Button close = new Button("Close");
 
-    Button close = new Button("Close");
-
-    Image albumImage;
-    H2 albumTitle;
-    Paragraph albumDescription;
-    H2 artistName;
-    Paragraph artistDescription;
-
+    private Image albumImage;
+    private H2 albumTitle;
+    private Paragraph albumDescription;
+    private H2 artistName;
+    private Paragraph artistDescription;
 
     public AlbumDetails(Album album, AlbumView albumView) {
         this.setVisible(true);
@@ -35,14 +33,7 @@ public class AlbumDetails extends VerticalLayout {
             albumView.remove(this);
         });
 
-        add(
-                close,
-                albumImage,
-                albumTitle,
-                albumDescription,
-                artistName,
-                artistDescription
-                );
+        add(close, albumImage, albumTitle, albumDescription, artistName, artistDescription);
     }
 
 }
