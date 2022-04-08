@@ -29,10 +29,10 @@ public class Header extends AppLayout {
             addToNavbar(loginButton);
         }
 
-        RouterLink albumView = new RouterLink("Album View",AlbumView.class );
+        RouterLink albumViewLink = new RouterLink("Album View",AlbumView.class );
         RouterLink managePostLink = new RouterLink("Manage posts",ManagePostView.class );
 
-        Tabs tabs = new Tabs(new Tab(albumView), new Tab(managePostLink));
+        Tabs tabs = new Tabs(new Tab(albumViewLink), new Tab(managePostLink));
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
 
         addToDrawer(tabs);
