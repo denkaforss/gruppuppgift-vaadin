@@ -8,6 +8,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.RouterLink;
@@ -21,9 +22,10 @@ public class Header extends AppLayout {
 
 /*        Tab artistView = new Tab("Artist View");*/
 
+        RouterLink albumViewLink = new RouterLink("View Albums", AlbumView.class);
 
         RouterLink managePostLink = new RouterLink("Manage posts",ManagePostView.class );
-        Tabs tabs = new Tabs(/*artistView,*/ new Tab(managePostLink));
+        Tabs tabs = new Tabs(/*artistView,*/ new Tab(managePostLink), new Tab(albumViewLink));
 
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
 
