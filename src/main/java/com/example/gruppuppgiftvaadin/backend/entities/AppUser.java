@@ -1,6 +1,7 @@
 package com.example.gruppuppgiftvaadin.backend.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,19 +30,19 @@ public class AppUser {
     private String password;
 
      @OneToMany(mappedBy = "appUser")
-     @JsonIgnore
+     @JsonIgnoreProperties("appUser")
      @Getter
      @Setter
     private Set<Album> setAlbum;
 
      @OneToMany(mappedBy = "appUser")
-    @JsonIgnore
+     @JsonIgnore
      @Getter
      @Setter
     private Set<Artist> setArtist;
 
      @OneToMany(mappedBy = "appUser")
-    @JsonIgnore
+     @JsonIgnore
      @Getter
      @Setter
     private Set<Songs> setSongs;

@@ -45,4 +45,8 @@ public class AlbumService {
         return existingAlbum;
 
     }
+
+    public List<Album> findPostByAuthorUsername(String principalName) {
+        return albumRepo.findByAppUser_Username(principalName);
+    }
 }

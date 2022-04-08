@@ -11,7 +11,7 @@ public class PrincipalUtil {
     }
 
     public static boolean isLoggedIn(){
-        return SecurityContextHolder
+        return !SecurityContextHolder
                 .getContext()
                 .getAuthentication()
                 .getName().equalsIgnoreCase("anonymousUser");

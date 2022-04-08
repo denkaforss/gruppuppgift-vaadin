@@ -15,4 +15,5 @@ public interface AlbumRepo extends JpaRepository<Album, Integer> {
             "where lower(a.albumName) like lower(concat('%', :searchTerm, '%'))")
     List<Album> search(@Param("searchTerm")String searchTerm);
 
+    List<Album> findByAppUser_Username(String username);
 }
