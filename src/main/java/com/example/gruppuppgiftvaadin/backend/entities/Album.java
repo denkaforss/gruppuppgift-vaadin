@@ -29,7 +29,7 @@ public class Album {
     @Setter
     private LocalDate releaseYear;
 
-    @OneToMany(mappedBy = "album")
+    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     @Getter
     @Setter
