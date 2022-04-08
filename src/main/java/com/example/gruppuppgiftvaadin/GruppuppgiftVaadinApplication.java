@@ -10,7 +10,6 @@ import com.example.gruppuppgiftvaadin.backend.repositories.ArtistRepo;
 import com.example.gruppuppgiftvaadin.backend.repositories.SongsRepo;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
-import com.vaadin.flow.theme.lumo.Lumo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,7 +18,8 @@ import org.springframework.context.annotation.Bean;
 import java.time.LocalDate;
 
 @SpringBootApplication
-@Theme(themeClass = Lumo.class, variant = Lumo.DARK)
+/*@Theme(themeClass = Lumo.class, variant = Lumo.DARK)*/
+@Theme(value = "custom-theme", variant = "dark")
 public class GruppuppgiftVaadinApplication implements AppShellConfigurator {
 
     public static void main(String[] args) {
