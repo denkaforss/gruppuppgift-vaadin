@@ -19,11 +19,11 @@ public class Header extends AppLayout {
     public Header() {
         configureNavbar();
 
-        Tab artistView = new Tab("Artist View");
+/*        Tab artistView = new Tab("Artist View");*/
 
 
         RouterLink managePostLink = new RouterLink("Manage posts",ManagePostView.class );
-        Tabs tabs = new Tabs(artistView, new Tab(managePostLink));
+        Tabs tabs = new Tabs(/*artistView,*/ new Tab(managePostLink));
 
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
 
