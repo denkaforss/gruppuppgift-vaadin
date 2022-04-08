@@ -14,7 +14,7 @@ import com.vaadin.flow.data.binder.Binder;
 
 public class BlogForm extends FormLayout {
 
-    TextField title = new TextField("Title");
+/*    TextField title = new TextField("Title");*/
     TextField albumName = new TextField("Album Name");
     TextField artistName = new TextField("Artist Name");
     DatePicker releaseYear = new DatePicker("Release year");
@@ -49,7 +49,7 @@ public class BlogForm extends FormLayout {
         setVisible(false);
         saveButton.addClickListener(evt -> handleSave());
 
-        add(title,albumName,artistName,releaseYear,saveButton);
+        add(/*title,*/albumName,artistName,releaseYear,saveButton);
     }
     public void setAlbum(Album album){
         if (album != null) {

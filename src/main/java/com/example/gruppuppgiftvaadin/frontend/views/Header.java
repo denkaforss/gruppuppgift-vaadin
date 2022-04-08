@@ -36,9 +36,9 @@ public class Header extends AppLayout {
 
         Image logo = new Image("/images/mythictunes.png", "MythicTunes");
 
-        Button logoutButton = new Button("Logout", evt -> PrincipalUtil.logout());
         Button loginButton = new Button("Login", evt ->
                 UI.getCurrent().navigate(LoginView.class));
+        Button logoutButton = new Button("Logout", evt -> PrincipalUtil.logout());
 
         navbar.add(toggle, logo);
 
