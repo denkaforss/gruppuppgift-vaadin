@@ -1,6 +1,7 @@
 package com.example.gruppuppgiftvaadin.components;
 
 import com.example.gruppuppgiftvaadin.backend.entities.Album;
+import com.example.gruppuppgiftvaadin.backend.entities.Artist;
 import com.example.gruppuppgiftvaadin.backend.services.AlbumService;
 import com.example.gruppuppgiftvaadin.frontend.views.ManagePostView;
 import com.vaadin.flow.component.button.Button;
@@ -16,13 +17,17 @@ public class BlogForm extends FormLayout {
 
 /*    TextField title = new TextField("Title");*/
     TextField albumName = new TextField("Album Name");
-    TextField artistName = new TextField("Artist Name");
+    TextField artistName = new TextField("Artist name");
     DatePicker releaseYear = new DatePicker("Release year");
     Button saveButton = new Button("Save");
 
+    Binder<Album> albumBinder = new BeanValidationBinder<>(Album.class);
+    AlbumService albumService;
+    ManagePostView managePostView;
+
 
     private void handleSave() {
-        Album album = binder.validate().getBinder().getBean();
+        Album album = albumBinder.validate().getBinder().getBean();
         if (album.getId() == 0) ;
         albumService.saveAlbum(album);
 
@@ -36,16 +41,10 @@ public class BlogForm extends FormLayout {
         });
     }
 
-
-
-    Binder<Album> binder = new BeanValidationBinder<>(Album.class);
-    AlbumService albumService;
-    ManagePostView managePostView;
-
     public BlogForm(AlbumService albumService, ManagePostView managePostView){
         this.managePostView = managePostView;
         this.albumService = albumService;
-        binder.bindInstanceFields(this);
+        albumBinder.bindInstanceFields(this);
         setVisible(false);
         saveButton.addClickListener(evt -> handleSave());
 
@@ -53,13 +52,11 @@ public class BlogForm extends FormLayout {
     }
     public void setAlbum(Album album){
         if (album != null) {
-            binder.setBean(album);
+            albumBinder.setBean(album);
             setVisible(true);
         }else{
             setVisible(false);
         }
 
     }
-
-
 }

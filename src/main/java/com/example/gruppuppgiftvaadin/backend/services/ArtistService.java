@@ -27,6 +27,8 @@ public class ArtistService {
 
     public void deleteArtist(Artist artist) {artistRepo.delete(artist);}
 
+    public void deleteById(int id) {artistRepo.deleteById(id);}
+
     public Artist updateArtist(int id, Artist changedArtist) {
 
         Artist existingArtist = artistRepo.findById(id).orElseThrow();

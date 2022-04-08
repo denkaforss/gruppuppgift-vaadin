@@ -5,6 +5,8 @@ import com.example.gruppuppgiftvaadin.backend.entities.AppUser;
 import com.example.gruppuppgiftvaadin.backend.repositories.AppUserRepo;
 import com.example.gruppuppgiftvaadin.backend.security.PrincipalUtil;
 import com.example.gruppuppgiftvaadin.backend.services.AlbumService;
+import com.example.gruppuppgiftvaadin.backend.services.ArtistService;
+import com.example.gruppuppgiftvaadin.backend.services.SongsService;
 import com.example.gruppuppgiftvaadin.components.BlogForm;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -40,9 +42,9 @@ public class ManagePostView extends VerticalLayout {
         grid.setWidthFull();
 
         grid.addComponentColumn(album -> {
-            Button button = new Button(new Icon(VaadinIcon.CLOSE), evt -> {
-                Notification.show(album.getAlbumName());
-                albumService.deleteAlbum(album);
+            Button button = new Button(new Icon(VaadinIcon.TRASH), evt -> {
+                Notification.show(album.getAlbumName() + " deleted");
+                albumService.deleteById(album.getId());
                 updateItems();
 
             });
@@ -57,10 +59,10 @@ public class ManagePostView extends VerticalLayout {
         });
 
 
-/*        grid.addColumn(Album::getId).setHeader("id").setSortable(true).setResizable(true);
-        grid.addColumn(Album::getAlbumName).setHeader("Title");
-        grid.addColumn(Album::getArtist).setHeader("Name");
-        grid.addColumn(Album::getReleaseYear).setHeader("Date");*/
+        grid.addColumn(Album::getId).setHeader("id").setSortable(true).setResizable(true);
+        grid.addColumn(Album::getAlbumName).setHeader("Album name:");
+        grid.addColumn(album -> album.getArtist().getArtistName()).setHeader("Artist name:");
+        grid.addColumn(Album::getReleaseYear).setHeader("Date of release:");
 
         grid.asSingleSelect().addValueChangeListener(evt -> {
          blogForm.setAlbum(evt.getValue());

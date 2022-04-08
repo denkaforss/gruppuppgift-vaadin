@@ -31,6 +31,8 @@ public class AlbumService {
 
     public void deleteAlbum(Album album) {albumRepo.delete(album);}
 
+    public void deleteById(int id) {albumRepo.deleteById(id);}
+
     public Album updateAlbum(int id, Album changedAlbum) {
 
         Album existingAlbum = albumRepo.findById(id).orElseThrow();

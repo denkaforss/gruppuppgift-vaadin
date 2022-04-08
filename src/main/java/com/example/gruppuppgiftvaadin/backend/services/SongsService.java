@@ -35,6 +35,10 @@ public class SongsService {
         songsRepo.delete(song);
     }
 
+    public void deleteById(int id) {
+        songsRepo.deleteById(id);
+    }
+
     public Songs updateSong(int id, Songs changedSong) {
 
         Songs existingSong = songsRepo.findById(id).orElseThrow();
