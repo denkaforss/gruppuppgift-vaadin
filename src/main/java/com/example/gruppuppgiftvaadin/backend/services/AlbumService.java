@@ -39,6 +39,8 @@ public class AlbumService {
 
         if (changedAlbum.getAlbumName() != null)
             existingAlbum.setAlbumName(changedAlbum.getAlbumName());
+        if(changedAlbum.getArtistName() != null)
+            existingAlbum.setArtistName(changedAlbum.getArtistName());
         if (changedAlbum.getReleaseYear() != null)
             existingAlbum.setReleaseYear(changedAlbum.getReleaseYear());
 

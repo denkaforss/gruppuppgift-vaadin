@@ -39,7 +39,7 @@ public class AlbumView extends VerticalLayout {
         albumService.findAll().forEach(album -> {
             VerticalLayout albumLayout = new VerticalLayout();
             H2 albumTitle = new H2(album.getAlbumName());
-            H3 artistName = new H3(album.getArtist().getArtistName());
+            H3 artistName = new H3(album.getArtistName());
 
             Image albumImage = new Image(album.getImagePath(), "Album Image");
             albumImage.setHeight("250px");

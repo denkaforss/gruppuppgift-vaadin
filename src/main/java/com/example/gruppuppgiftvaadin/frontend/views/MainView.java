@@ -35,6 +35,7 @@ public class MainView extends AppLayout {
         addToDrawer(tabs);
         addToNavbar(toggle, logo);
 
+
     }
 
 

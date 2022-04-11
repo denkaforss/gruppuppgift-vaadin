@@ -6,7 +6,6 @@ import com.example.gruppuppgiftvaadin.backend.repositories.AppUserRepo;
 import com.example.gruppuppgiftvaadin.backend.security.PrincipalUtil;
 import com.example.gruppuppgiftvaadin.backend.services.AlbumService;
 import com.example.gruppuppgiftvaadin.backend.services.ArtistService;
-import com.example.gruppuppgiftvaadin.backend.services.SongsService;
 import com.example.gruppuppgiftvaadin.components.BlogForm;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -18,7 +17,6 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.auth.AnonymousAllowed;
 
 import javax.annotation.security.PermitAll;
 
@@ -29,13 +27,15 @@ public class ManagePostView extends VerticalLayout {
 
     Grid<Album> grid = new Grid<>(Album.class,false);
     AlbumService albumService;
+    ArtistService artistService;
     BlogForm blogForm;
     AppUserRepo appUserRepo;
 
-    public ManagePostView(AlbumService albumService, AppUserRepo appUserRepo) {
+
+    public ManagePostView(AlbumService albumService, AppUserRepo appUserRepo, ArtistService artistService) {
         this.albumService = albumService;
         this.appUserRepo = appUserRepo;
-        this.blogForm = new BlogForm(albumService,this );
+        this.blogForm = new BlogForm(albumService,artistService,this);
         setAlignItems(Alignment.CENTER);
 
         grid.setItems(albumService.findPostByAuthorUsername(PrincipalUtil.getPrincipalName()));
@@ -61,7 +61,7 @@ public class ManagePostView extends VerticalLayout {
 
         grid.addColumn(Album::getId).setHeader("id").setSortable(true).setResizable(true);
         grid.addColumn(Album::getAlbumName).setHeader("Album name:");
-        grid.addColumn(album -> album.getArtist().getArtistName()).setHeader("Artist name:");
+        grid.addColumn(Album::getArtistName).setHeader("Artist name:");
         grid.addColumn(Album::getReleaseYear).setHeader("Date of release:");
 
         grid.asSingleSelect().addValueChangeListener(evt -> {
@@ -74,7 +74,7 @@ public class ManagePostView extends VerticalLayout {
 
         Button button = new Button("Add new album", evt -> {
             Dialog dialog = new Dialog();
-            BlogForm dialogForm = new BlogForm(albumService, this);
+            BlogForm dialogForm = new BlogForm(albumService, artistService, this);
 
             Album album = new Album();
             AppUser currentUser = appUserRepo.findByUsername(PrincipalUtil.getPrincipalName()).orElseThrow();

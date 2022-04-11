@@ -33,6 +33,7 @@ public class GruppuppgiftVaadinApplication implements AppShellConfigurator {
             AppUser appUser = new AppUser("admin", "password");
             appUserRepo.saveAll(List.of(appUser));
 
+
             Artist avantasia = new Artist("Avantasia", LocalDate.of(1999, 4, 14), "Germany", appUser, "Avantasia är ett power metalprojekt skapat av Edguys sångare Tobias Sammet. Hittills har sju skivor givits ut varav fem är album The Metal Opera Part I, The Metal Opera Part II, Lost In Space part I EP, Lost In Space Part II EP");
 
             Artist artist2 = new Artist("Miss May I", LocalDate.of(2001, 1, 1), "denmark", appUser, "Miss May I is an American metalcore band from Troy, Ohio. Formed in 2007,[3] they signed to Rise Records in 2008 and released their debut album, Apologies Are for the Weak through the label while the members were still attending high school.");
