@@ -6,7 +6,7 @@ import com.example.gruppuppgiftvaadin.backend.repositories.AppUserRepo;
 import com.example.gruppuppgiftvaadin.backend.security.PrincipalUtil;
 import com.example.gruppuppgiftvaadin.backend.services.AlbumService;
 import com.example.gruppuppgiftvaadin.backend.services.ArtistService;
-import com.example.gruppuppgiftvaadin.components.BlogForm;
+import com.example.gruppuppgiftvaadin.frontend.views.components.BlogForm;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -85,6 +85,7 @@ public class ManagePostView extends VerticalLayout {
 
             Album album = new Album();
             AppUser currentUser = appUserRepo.findByUsername(PrincipalUtil.getPrincipalName()).orElseThrow();
+
             album.setAppUser(currentUser);
 
             FileBuffer fileBuffer = new FileBuffer();
