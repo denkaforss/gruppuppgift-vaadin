@@ -9,6 +9,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
@@ -19,9 +20,10 @@ public class BlogForm extends FormLayout {
     /*    TextField title = new TextField("Title");*/
     TextField albumName = new TextField("Album Name");
     TextField artistName = new TextField("Artist name");
-    TextField homeCountry = new TextField("Country");
-    DatePicker startingYear = new DatePicker("starting Year");
+    /*TextField homeCountry = new TextField("Country");*/
+    /*DatePicker startingYear = new DatePicker("starting Year");*/
     DatePicker releaseYear = new DatePicker("Release year");
+    TextArea detailedInfo = new TextArea("Detailed info");
 
     Button saveButton = new Button("Save");
 
@@ -46,7 +48,7 @@ public class BlogForm extends FormLayout {
         saveButton.addClickListener(evt -> handleSave());
 
 
-        add(albumName, artistName, homeCountry, startingYear, releaseYear, saveButton);
+        add(albumName, artistName,/* homeCountry, startingYear,*/ releaseYear, detailedInfo, saveButton);
     }
 
     public void setAlbum(Album album) {
