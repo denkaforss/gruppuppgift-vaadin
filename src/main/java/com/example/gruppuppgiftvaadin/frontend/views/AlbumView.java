@@ -54,7 +54,7 @@ public class AlbumView extends VerticalLayout {
                 VerticalLayout vl = createDialog(album, dialog);
                 dialog.add(vl);
                 dialog.setModal(true);
-                dialog.setWidth("50%");
+                dialog.setWidth("60vw");
                 dialog.open();
             });
 
@@ -77,16 +77,20 @@ public class AlbumView extends VerticalLayout {
         close.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
         Image albumImage = new Image(album.getImagePath(), "Album image");
+        albumImage.setWidth("100%");
 
         H2 albumTitle = new H2(album.getAlbumName());
         Paragraph albumDescription = new Paragraph(album.getDetailedInfo());
         H2 artistName = new H2(album.getArtist().getArtistName());
         Paragraph artistDescription = new Paragraph(album.getArtist().getDetailedInfo());
 
-        VerticalLayout vl = new VerticalLayout();
+        VerticalLayout vl1 = new VerticalLayout(albumTitle, albumDescription, artistName, artistDescription);
+        VerticalLayout vl2 = new VerticalLayout(albumImage);
+        vl2.setWidth("30vw");
         HorizontalLayout hl = new HorizontalLayout();
-        vl.add(albumTitle, albumDescription, artistName, artistDescription);
-        hl.add(albumImage, vl);
+
+        hl.add(vl2, vl1);
+        hl.setDefaultVerticalComponentAlignment(Alignment.END);
 
         return new VerticalLayout(hl, close);
     }
