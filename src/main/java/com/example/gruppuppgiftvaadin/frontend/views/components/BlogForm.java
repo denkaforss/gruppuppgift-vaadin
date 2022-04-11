@@ -1,4 +1,4 @@
-package com.example.gruppuppgiftvaadin.components;
+package com.example.gruppuppgiftvaadin.frontend.views.components;
 
 import com.example.gruppuppgiftvaadin.backend.entities.Album;
 import com.example.gruppuppgiftvaadin.backend.entities.Artist;
@@ -24,6 +24,7 @@ public class BlogForm extends FormLayout {
     /*DatePicker startingYear = new DatePicker("starting Year");*/
     DatePicker releaseYear = new DatePicker("Release year");
     TextArea detailedInfo = new TextArea("Detailed info");
+
 
     Button saveButton = new Button("Save");
 

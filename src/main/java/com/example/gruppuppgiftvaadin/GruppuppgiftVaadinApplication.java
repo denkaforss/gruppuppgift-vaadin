@@ -34,11 +34,11 @@ public class GruppuppgiftVaadinApplication implements AppShellConfigurator {
             appUserRepo.saveAll(List.of(appUser));
 
 
-            Artist avantasia = new Artist("Avantasia", LocalDate.of(1999, 4, 14), "Germany", appUser, "Avantasia är ett power metalprojekt skapat av Edguys sångare Tobias Sammet. Hittills har sju skivor givits ut varav fem är album The Metal Opera Part I, The Metal Opera Part II, Lost In Space part I EP, Lost In Space Part II EP");
+            Artist avantasia = new Artist("Avantasia", LocalDate.of(1999, 4, 14), "Germany", appUser, "Avantasia är ett power metalprojekt skapat av Edguys sångare Tobias Sammet. Hittills har sju skivor givits ut varav fem är album The Metal Opera Part I, The Metal Opera Part II, Lost In Space part I EP, Lost In Space Part II EP", "/images/avantasia-band.jpg");
 
-            Artist artist2 = new Artist("Miss May I", LocalDate.of(2001, 1, 1), "denmark", appUser, "Miss May I is an American metalcore band from Troy, Ohio. Formed in 2007,[3] they signed to Rise Records in 2008 and released their debut album, Apologies Are for the Weak through the label while the members were still attending high school.");
+            Artist artist2 = new Artist("Miss May I", LocalDate.of(2001, 1, 1), "denmark", appUser, "Miss May I is an American metalcore band from Troy, Ohio. Formed in 2007,[3] they signed to Rise Records in 2008 and released their debut album, Apologies Are for the Weak through the label while the members were still attending high school.", "/images/miss-may-i.jpg");
 
-            Artist artist4 = new Artist("Bullet For My Valentine", LocalDate.of(2001, 1, 1), "Spain", appUser, "Bullet for My Valentine är ett walesiskt heavy metalband från Bridgend, bildade år 1998. Bandet består av Matthew Tuck (sång, kompgitarr), Michael Paget (sologitarr, bakgrundssång), Michael Thomas (trummor) och Jamie Mathias (bas).");
+            Artist artist4 = new Artist("Bullet For My Valentine", LocalDate.of(2001, 1, 1), "Spain", appUser, "Bullet for My Valentine är ett walesiskt heavy metalband från Bridgend, bildade år 1998. Bandet består av Matthew Tuck (sång, kompgitarr), Michael Paget (sologitarr, bakgrundssång), Michael Thomas (trummor) och Jamie Mathias (bas).", "/images/bullet.jpg");
 
 
             Album album = new Album("The Wicked Symphony", LocalDate.of(2010, 4, 3), avantasia, appUser, "The Wicked Symphony är det fjärde power metalalbumet skapat av Avantasia, ett av Tobias Sammets projekt. På skivan medverkar flertalet musiker från diverse olika band, exempelvis Tim \"Ripper\" Owens som tidigare sjöng i Judas Priest och Iced Earth.", "/images/avantasia.jpg", avantasia.getArtistName());

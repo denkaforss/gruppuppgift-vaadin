@@ -85,9 +85,9 @@ public class AlbumView extends VerticalLayout {
         H2 albumTitle = new H2(album.getAlbumName());
         Paragraph albumDescription = new Paragraph(album.getDetailedInfo());
         H2 artistName = new H2(album.getArtistName());
-        Paragraph artistDescription = new Paragraph(album.getArtist().getDetailedInfo());
+        /*Paragraph artistDescription = new Paragraph(album.getArtist().getDetailedInfo());*/
 
-        VerticalLayout vl1 = new VerticalLayout(albumTitle, albumDescription, artistName, artistDescription);
+        VerticalLayout vl1 = new VerticalLayout(albumTitle, albumDescription/*, artistName, artistDescription*/);
         VerticalLayout vl2 = new VerticalLayout(albumImage);
         HorizontalLayout hl = new HorizontalLayout();
 

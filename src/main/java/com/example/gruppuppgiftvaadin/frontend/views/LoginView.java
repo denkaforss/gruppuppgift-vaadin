@@ -19,6 +19,7 @@ public class LoginView extends Div implements BeforeEnterObserver {
         loginOverlay.setAction("login");
 
         add(loginOverlay);
+
     }
 
     @Override
