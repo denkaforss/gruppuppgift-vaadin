@@ -44,6 +44,7 @@ public class AlbumView extends VerticalLayout {
             Image albumImage = new Image(album.getImagePath(), "Album Image");
             albumImage.setHeight("250px");
             albumImage.setWidth("250px");
+            albumImage.getStyle().set("border-radius", "5px");
 
             albumLayout.setSizeUndefined();
             albumLayout.setAlignItems(Alignment.CENTER);
@@ -54,7 +55,8 @@ public class AlbumView extends VerticalLayout {
                 VerticalLayout vl = createDialog(album, dialog);
                 dialog.add(vl);
                 dialog.setModal(true);
-                dialog.setWidth("50%");
+                dialog.setMinWidth("900px");
+                dialog.setWidth("60vw");
                 dialog.open();
             });
 
@@ -77,17 +79,24 @@ public class AlbumView extends VerticalLayout {
         close.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
         Image albumImage = new Image(album.getImagePath(), "Album image");
+        albumImage.setWidth("100%");
+        albumImage.getStyle().set("border-radius", "5px");
 
         H2 albumTitle = new H2(album.getAlbumName());
         Paragraph albumDescription = new Paragraph(album.getDetailedInfo());
         H2 artistName = new H2(album.getArtist().getArtistName());
         Paragraph artistDescription = new Paragraph(album.getArtist().getDetailedInfo());
 
-        VerticalLayout vl = new VerticalLayout();
+        VerticalLayout vl1 = new VerticalLayout(albumTitle, albumDescription, artistName, artistDescription);
+        VerticalLayout vl2 = new VerticalLayout(albumImage);
         HorizontalLayout hl = new HorizontalLayout();
-        vl.add(albumTitle, albumDescription, artistName, artistDescription);
-        hl.add(albumImage, vl);
 
-        return new VerticalLayout(hl, close);
+        hl.add(vl2, vl1);
+        hl.setDefaultVerticalComponentAlignment(Alignment.END);
+
+        VerticalLayout layout = new VerticalLayout(close, hl);
+        layout.setDefaultHorizontalComponentAlignment(Alignment.END);
+
+        return layout;
     }
 }
