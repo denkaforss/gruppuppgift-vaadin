@@ -81,6 +81,7 @@ public class ManagePostView extends VerticalLayout {
             album.setAppUser(currentUser);
 
             dialogForm.setAlbum(album);
+            album.setImagePath("/images/blank-album.jpg");
 
             dialog.add(dialogForm);
             dialog.open();
