@@ -24,11 +24,16 @@ public class Header extends AppLayout {
         Button logoutButton = new Button("Logout", evt -> PrincipalUtil.logout());
         Button loginButton = new Button("Login", evt ->
                 UI.getCurrent().navigate(LoginView.class));
+        Button registerButton = new Button("Register", evt -> UI.getCurrent().navigate(RegisterView.class));
+
+
 
         if (PrincipalUtil.isLoggedIn()) {
             addToNavbar(logoutButton);
+            remove(registerButton);
         } else {
             addToNavbar(loginButton);
+            addToNavbar(registerButton);
         }
 
         RouterLink albumViewLink = new RouterLink("Album View",AlbumView.class );
