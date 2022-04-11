@@ -1,6 +1,8 @@
 package com.example.gruppuppgiftvaadin.frontend.views;
 
 import com.example.gruppuppgiftvaadin.backend.security.PrincipalUtil;
+import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -30,9 +32,10 @@ public class Header extends AppLayout {
         }
 
         RouterLink albumViewLink = new RouterLink("Album View",AlbumView.class );
+        RouterLink artistViewLink = new RouterLink("Artist View",ArtistView.class );
         RouterLink managePostLink = new RouterLink("Manage posts",ManagePostView.class );
 
-        Tabs tabs = new Tabs(new Tab(albumViewLink), new Tab(managePostLink));
+        Tabs tabs = new Tabs(new Tab(albumViewLink), new Tab(artistViewLink), new Tab(managePostLink));
         tabs.setOrientation(Tabs.Orientation.VERTICAL);
 
         addToDrawer(tabs);

@@ -56,13 +56,19 @@ public class Artist {
     @Setter
     private String detailedInfo;
 
+    @Column
+    @Getter
+    @Setter
+    private String imagePath;
+
     public Artist(){}
 
-    public Artist(String artistName, LocalDate startingYear, String homeCountry, AppUser appUser, String detailedInfo) {
+    public Artist(String artistName, LocalDate startingYear, String homeCountry, AppUser appUser, String detailedInfo, String imagePath) {
         this.artistName = artistName;
         this.startingYear = startingYear;
         this.homeCountry = homeCountry;
         this.appUser = appUser;
         this.detailedInfo = detailedInfo;
+        this.imagePath = imagePath;
     }
 }
