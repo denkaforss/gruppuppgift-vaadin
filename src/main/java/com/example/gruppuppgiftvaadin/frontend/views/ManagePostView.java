@@ -16,9 +16,16 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.upload.Upload;
+import com.vaadin.flow.component.upload.receivers.FileBuffer;
 import com.vaadin.flow.router.Route;
 
 import javax.annotation.security.PermitAll;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 @Route(value = "/manageposts",layout = Header.class)
 @PermitAll
@@ -80,12 +87,28 @@ public class ManagePostView extends VerticalLayout {
             AppUser currentUser = appUserRepo.findByUsername(PrincipalUtil.getPrincipalName()).orElseThrow();
             album.setAppUser(currentUser);
 
+            FileBuffer fileBuffer = new FileBuffer();
+            Upload upload = new Upload(fileBuffer);
+
+            upload.addSucceededListener(succeededEvent -> {
+                InputStream fileData = fileBuffer.getInputStream();
+                String fileName = succeededEvent.getFileName();
+                album.setImagePath("/images/" + fileName);
+                BufferedImage bufferedImage;
+                try {
+                    bufferedImage = ImageIO.read(fileData);
+                    ImageIO.write(bufferedImage, "jpg", new File("src/main/resources/META-INF/resources/images/" + fileName));
+                    fileData.close();
+                } catch (IOException e) {
+                    System.out.println("An error occurred");
+                    e.printStackTrace();
+                }
+
+            });
+
             dialogForm.setAlbum(album);
-            album.setImagePath("/images/blank-album.jpg");
-
-            dialog.add(dialogForm);
+            dialog.add(dialogForm, upload);
             dialog.open();
-
         });
 
         add(mainContent, button);
