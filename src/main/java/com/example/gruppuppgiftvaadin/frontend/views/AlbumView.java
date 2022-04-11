@@ -44,6 +44,7 @@ public class AlbumView extends VerticalLayout {
             Image albumImage = new Image(album.getImagePath(), "Album Image");
             albumImage.setHeight("250px");
             albumImage.setWidth("250px");
+            albumImage.getStyle().set("border-radius", "5px");
 
             albumLayout.setSizeUndefined();
             albumLayout.setAlignItems(Alignment.CENTER);
@@ -79,6 +80,7 @@ public class AlbumView extends VerticalLayout {
 
         Image albumImage = new Image(album.getImagePath(), "Album image");
         albumImage.setWidth("100%");
+        albumImage.getStyle().set("border-radius", "5px");
 
         H2 albumTitle = new H2(album.getAlbumName());
         Paragraph albumDescription = new Paragraph(album.getDetailedInfo());
@@ -87,12 +89,14 @@ public class AlbumView extends VerticalLayout {
 
         VerticalLayout vl1 = new VerticalLayout(albumTitle, albumDescription, artistName, artistDescription);
         VerticalLayout vl2 = new VerticalLayout(albumImage);
-        /*vl2.setWidth("30vw");*/
         HorizontalLayout hl = new HorizontalLayout();
 
         hl.add(vl2, vl1);
         hl.setDefaultVerticalComponentAlignment(Alignment.END);
 
-        return new VerticalLayout(hl, close);
+        VerticalLayout layout = new VerticalLayout(close, hl);
+        layout.setDefaultHorizontalComponentAlignment(Alignment.END);
+
+        return layout;
     }
 }
