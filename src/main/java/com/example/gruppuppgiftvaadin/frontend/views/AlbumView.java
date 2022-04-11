@@ -54,6 +54,7 @@ public class AlbumView extends VerticalLayout {
                 VerticalLayout vl = createDialog(album, dialog);
                 dialog.add(vl);
                 dialog.setModal(true);
+                dialog.setMinWidth("900px");
                 dialog.setWidth("60vw");
                 dialog.open();
             });
@@ -86,7 +87,7 @@ public class AlbumView extends VerticalLayout {
 
         VerticalLayout vl1 = new VerticalLayout(albumTitle, albumDescription, artistName, artistDescription);
         VerticalLayout vl2 = new VerticalLayout(albumImage);
-        vl2.setWidth("30vw");
+        /*vl2.setWidth("30vw");*/
         HorizontalLayout hl = new HorizontalLayout();
 
         hl.add(vl2, vl1);
