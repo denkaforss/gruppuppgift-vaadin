@@ -30,7 +30,7 @@ import java.io.InputStream;
 @Route(value = "/manageposts",layout = Header.class)
 @PermitAll
 /*@AnonymousAllowed*/
-public class ManagePostView extends VerticalLayout {
+public class ManageAlbum extends VerticalLayout {
 
     Grid<Album> grid = new Grid<>(Album.class,false);
     AlbumService albumService;
@@ -39,20 +39,21 @@ public class ManagePostView extends VerticalLayout {
     AppUserRepo appUserRepo;
 
 
-    public ManagePostView(AlbumService albumService, AppUserRepo appUserRepo, ArtistService artistService) {
+    public ManageAlbum(AlbumService albumService, AppUserRepo appUserRepo, ArtistService artistService) {
         this.albumService = albumService;
         this.appUserRepo = appUserRepo;
         this.blogForm = new BlogForm(albumService,artistService,this);
         setAlignItems(Alignment.CENTER);
 
-        grid.setItems(albumService.findAll());
+        grid.setItems(albumService.findPostByAuthorUsername(PrincipalUtil.getPrincipalName()));
         grid.setWidthFull();
 
         grid.addComponentColumn(album -> {
             Button button = new Button(new Icon(VaadinIcon.TRASH), evt -> {
-                    Notification.show(album.getAlbumName() + " deleted");
-                    albumService.deleteById(album.getId());
-                    updateItems();
+                albumService.deleteById(album.getId());
+                Notification.show(album.getAlbumName() + " deleted");
+                updateItems();
+
             });
 
             button.addThemeVariants(
@@ -69,6 +70,8 @@ public class ManagePostView extends VerticalLayout {
         grid.addColumn(Album::getAlbumName).setHeader("Album name:");
         grid.addColumn(Album::getArtistName).setHeader("Artist name:");
         grid.addColumn(Album::getReleaseYear).setHeader("Date of release:");
+
+        grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(evt -> {
          blogForm.setAlbum(evt.getValue());
