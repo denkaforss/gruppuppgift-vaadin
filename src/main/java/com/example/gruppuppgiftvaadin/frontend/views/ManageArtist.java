@@ -11,6 +11,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
@@ -51,10 +53,21 @@ public class ManageArtist extends VerticalLayout {
 
         grid.addComponentColumn(artist -> {
             Button button = new Button(new Icon(VaadinIcon.TRASH), evt -> {
-                artistService.deleteById(artist.getId());
-                Notification.show(artist.getArtistName() + " deleted");
-                updateItems();
-
+                Dialog warning = new Dialog();
+                warning.add(
+                        new H1("Warning"),
+                        new Paragraph("If you remove an Artist all albums related to this artis will also be removed"),
+                        new HorizontalLayout(
+                                new Button("Confirm", confirmed -> {
+                                    artistService.deleteById(artist.getId());
+                                    Notification.show(artist.getArtistName() + " deleted");
+                                    updateItems();
+                                    warning.close();
+                                }),
+                                new Button("Close", closed -> warning.close())
+                        )
+                );
+                warning.open();
             });
 
             button.addThemeVariants(

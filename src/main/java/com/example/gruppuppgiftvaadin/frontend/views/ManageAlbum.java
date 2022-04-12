@@ -120,6 +120,6 @@ public class ManageAlbum extends VerticalLayout {
 
     }
     public void updateItems(){
-        grid.setItems(albumService.findPostByAuthorUsername(PrincipalUtil.getPrincipalName()));
+        grid.setItems(albumService.findAll());
     }
 }

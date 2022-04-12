@@ -4,12 +4,16 @@ import com.example.gruppuppgiftvaadin.backend.security.PrincipalUtil;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.router.RouterLink;
+
+import java.util.Locale;
 
 public class Header extends AppLayout {
 
@@ -30,10 +34,15 @@ public class Header extends AppLayout {
         RouterLink managePostLink = new RouterLink("Manage Albums", ManageAlbum.class );
         RouterLink manageArtists = new RouterLink("Manage Artists", ManageArtist.class);
 
+        Avatar loggedInUser = new Avatar(PrincipalUtil.getPrincipalName().toUpperCase(Locale.ROOT));
+
         Tabs tabs = new Tabs(new Tab(albumViewLink), new Tab(artistViewLink));
 
+        HorizontalLayout userLayout = new HorizontalLayout(loggedInUser, logoutButton);
+        userLayout.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
+
         if (PrincipalUtil.isLoggedIn()) {
-            addToNavbar(logoutButton);
+            addToNavbar(new HorizontalLayout(userLayout));
             remove(registerButton);
             tabs.add(new Tab(managePostLink), new Tab(manageArtists));
         } else {
