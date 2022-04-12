@@ -94,11 +94,13 @@ public class ManagePostView extends VerticalLayout {
             upload.addSucceededListener(succeededEvent -> {
                 InputStream fileData = fileBuffer.getInputStream();
                 String fileName = succeededEvent.getFileName();
+                /*album.setImagePath("./frontend/resources/images/" + fileName);*/
                 album.setImagePath("/images/" + fileName);
                 BufferedImage bufferedImage;
                 try {
                     bufferedImage = ImageIO.read(fileData);
-                    ImageIO.write(bufferedImage, "jpg", new File("src/main/resources/META-INF/resources/images/" + fileName));
+                    /*ImageIO.write(bufferedImage, "jpg", new File("frontend/resources/images/" + fileName));*/
+                    ImageIO.write(bufferedImage, "jpg", new File("target/classes/META-INF/resources/images/" + fileName));
                     fileData.close();
                 } catch (IOException e) {
                     System.out.println("An error occurred");
