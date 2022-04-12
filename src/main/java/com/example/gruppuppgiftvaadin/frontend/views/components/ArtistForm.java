@@ -18,11 +18,11 @@ import com.vaadin.flow.data.binder.Binder;
 public class ArtistForm extends FormLayout {
 
     /*    TextField title = new TextField("Title");*/
-    TextField albumName = new TextField("Album Name");
+    /*TextField albumName = new TextField("Album Name");*/
     TextField artistName = new TextField("Artist name");
-    /*TextField homeCountry = new TextField("Country");*/
-    /*DatePicker startingYear = new DatePicker("starting Year");*/
-    DatePicker releaseYear = new DatePicker("Release year");
+    TextField homeCountry = new TextField("Country");
+    DatePicker startingYear = new DatePicker("starting Year");
+    /*DatePicker releaseYear = new DatePicker("Release year");*/
     TextArea detailedInfo = new TextArea("Detailed info");
 
 
@@ -49,7 +49,7 @@ public class ArtistForm extends FormLayout {
         saveButton.addClickListener(evt -> handleSave());
 
 
-        add(albumName, artistName,/* homeCountry, startingYear,*/ releaseYear, detailedInfo, saveButton);
+        add( artistName, homeCountry, startingYear, detailedInfo, saveButton);
     }
 
     public void setArtist(Artist artist) {

@@ -51,8 +51,8 @@ public class ManageArtist extends VerticalLayout {
 
         grid.addComponentColumn(artist -> {
             Button button = new Button(new Icon(VaadinIcon.TRASH), evt -> {
-                Notification.show(artist.getArtistName() + " deleted");
                 artistService.deleteById(artist.getId());
+                Notification.show(artist.getArtistName() + " deleted");
                 updateItems();
 
             });
@@ -68,7 +68,7 @@ public class ManageArtist extends VerticalLayout {
 
 
         grid.addColumn(Artist::getId).setHeader("id").setSortable(true).setResizable(true);
-        grid.addColumn(Artist::getArtistName).setHeader("Album name:");
+        grid.addColumn(Artist::getArtistName).setHeader("Artist name:");
         grid.addColumn(Artist::getHomeCountry).setHeader("Home Country:");
         grid.addColumn(Artist::getStartingYear).setHeader("Date of release:");
         grid.addColumn(Artist::getDetailedInfo).setHeader("Detailed Info");

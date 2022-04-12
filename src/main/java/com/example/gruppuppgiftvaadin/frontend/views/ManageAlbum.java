@@ -50,8 +50,8 @@ public class ManageAlbum extends VerticalLayout {
 
         grid.addComponentColumn(album -> {
             Button button = new Button(new Icon(VaadinIcon.TRASH), evt -> {
-                Notification.show(album.getAlbumName() + " deleted");
                 albumService.deleteById(album.getId());
+                Notification.show(album.getAlbumName() + " deleted");
                 updateItems();
 
             });
