@@ -1,9 +1,6 @@
 package com.example.gruppuppgiftvaadin;
 
-import com.example.gruppuppgiftvaadin.backend.entities.Album;
-import com.example.gruppuppgiftvaadin.backend.entities.AppUser;
-import com.example.gruppuppgiftvaadin.backend.entities.Artist;
-import com.example.gruppuppgiftvaadin.backend.entities.Songs;
+import com.example.gruppuppgiftvaadin.backend.entities.*;
 import com.example.gruppuppgiftvaadin.backend.repositories.AlbumRepo;
 import com.example.gruppuppgiftvaadin.backend.repositories.AppUserRepo;
 import com.example.gruppuppgiftvaadin.backend.repositories.ArtistRepo;
@@ -33,6 +30,18 @@ public class GruppuppgiftVaadinApplication implements AppShellConfigurator {
             AppUser admin = new AppUser("admin", "password");
             AppUser guest = new AppUser("guest", "password");
             appUserRepo.saveAll(List.of(admin, guest));
+
+            UserRole adminRole = new UserRole("admin");
+            UserRole guestRole = new UserRole("guest");
+
+            UserToRole adminToAdmin = new UserToRole(admin, adminRole);
+            UserToRole guestToGuest = new UserToRole(guest, guestRole);
+
+            UserPrivilege adminPrivilege = new UserPrivilege("canReadAdmin");
+            UserPrivilege guestPrivilege = new UserPrivilege("canReadGuest");
+
+            UserRoleToPrivilege adminRoleToPrivilege = new UserRoleToPrivilege(adminRole, adminPrivilege);
+            UserRoleToPrivilege guestRoleToPrivilege = new UserRoleToPrivilege(guestRole, guestPrivilege);
 
 
             Artist avantasia = new Artist("Avantasia", LocalDate.of(1999, 4, 14), "Germany", "Avantasia är ett power metalprojekt skapat av Edguys sångare Tobias Sammet. Hittills har sju skivor givits ut varav fem är album The Metal Opera Part I, The Metal Opera Part II, Lost In Space part I EP, Lost In Space Part II EP", "/images/avantasia-band.jpg");

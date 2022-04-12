@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -47,6 +48,10 @@ public class AppUser {
      @Getter
      @Setter
     private Set<Songs> setSongs;
+
+     @OneToMany(mappedBy = "user")
+     @Getter
+     private List<UserToRole> userToRoles;
 
     public AppUser() {}
 

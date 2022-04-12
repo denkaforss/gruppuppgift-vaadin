@@ -19,6 +19,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.FileBuffer;
 import com.vaadin.flow.router.Route;
+import org.springframework.security.access.annotation.Secured;
 
 import javax.annotation.security.PermitAll;
 import javax.imageio.ImageIO;
@@ -28,7 +29,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @Route(value = "/manageposts",layout = Header.class)
-@PermitAll
+@Secured("Role_admin")
 /*@AnonymousAllowed*/
 public class ManageAlbum extends VerticalLayout {
 
