@@ -41,7 +41,7 @@ public class Header extends AppLayout {
         HorizontalLayout userLayout = new HorizontalLayout(loggedInUser, logoutButton);
         userLayout.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
 
-        if (PrincipalUtil.isLoggedIn()) {
+        if (PrincipalUtil.getPrincipalName().toLowerCase(Locale.ROOT).equals("admin")) {
             addToNavbar(new HorizontalLayout(userLayout));
             remove(registerButton);
             tabs.add(new Tab(managePostLink), new Tab(manageArtists));
