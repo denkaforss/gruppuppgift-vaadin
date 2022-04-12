@@ -45,7 +45,7 @@ public class ManageAlbum extends VerticalLayout {
         this.blogForm = new BlogForm(albumService,artistService,this);
         setAlignItems(Alignment.CENTER);
 
-        grid.setItems(albumService.findPostByAuthorUsername(PrincipalUtil.getPrincipalName()));
+        grid.setItems(albumService.findAll());
         grid.setWidthFull();
 
         grid.addComponentColumn(album -> {
