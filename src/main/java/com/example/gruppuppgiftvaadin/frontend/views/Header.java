@@ -27,14 +27,15 @@ public class Header extends AppLayout {
 
         RouterLink albumViewLink = new RouterLink("Album View",AlbumView.class );
         RouterLink artistViewLink = new RouterLink("Artist View",ArtistView.class );
-        RouterLink managePostLink = new RouterLink("Manage Albums",ManagePostView.class );
+        RouterLink managePostLink = new RouterLink("Manage Albums", ManageAlbum.class );
+        RouterLink manageArtists = new RouterLink("Manage Artists", ManageArtist.class);
 
         Tabs tabs = new Tabs(new Tab(albumViewLink), new Tab(artistViewLink));
 
         if (PrincipalUtil.isLoggedIn()) {
             addToNavbar(logoutButton);
             remove(registerButton);
-            tabs.add(new Tab(managePostLink));
+            tabs.add(new Tab(managePostLink), new Tab(manageArtists));
         } else {
             addToNavbar(new HorizontalLayout(loginButton, registerButton));
         }

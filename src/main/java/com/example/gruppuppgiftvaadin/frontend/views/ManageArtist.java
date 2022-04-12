@@ -1,12 +1,12 @@
 package com.example.gruppuppgiftvaadin.frontend.views;
 
-import com.example.gruppuppgiftvaadin.backend.entities.Album;
 import com.example.gruppuppgiftvaadin.backend.entities.AppUser;
+import com.example.gruppuppgiftvaadin.backend.entities.Artist;
 import com.example.gruppuppgiftvaadin.backend.repositories.AppUserRepo;
 import com.example.gruppuppgiftvaadin.backend.security.PrincipalUtil;
 import com.example.gruppuppgiftvaadin.backend.services.AlbumService;
 import com.example.gruppuppgiftvaadin.backend.services.ArtistService;
-import com.example.gruppuppgiftvaadin.frontend.views.components.BlogForm;
+import com.example.gruppuppgiftvaadin.frontend.views.components.ArtistForm;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -27,31 +27,32 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-@Route(value = "/manageposts",layout = Header.class)
+@Route(value = "/manageartists",layout = Header.class)
 @PermitAll
 /*@AnonymousAllowed*/
-public class ManagePostView extends VerticalLayout {
+public class ManageArtist extends VerticalLayout {
 
-    Grid<Album> grid = new Grid<>(Album.class,false);
+    Grid<Artist> grid = new Grid<>(Artist.class,false);
     AlbumService albumService;
     ArtistService artistService;
-    BlogForm blogForm;
+    ArtistForm artistForm;
     AppUserRepo appUserRepo;
 
 
-    public ManagePostView(AlbumService albumService, AppUserRepo appUserRepo, ArtistService artistService) {
+    public ManageArtist(AlbumService albumService, AppUserRepo appUserRepo, ArtistService artistService) {
         this.albumService = albumService;
+        this.artistService = artistService;
         this.appUserRepo = appUserRepo;
-        this.blogForm = new BlogForm(albumService,artistService,this);
+        this.artistForm = new ArtistForm(albumService,artistService,this);
         setAlignItems(Alignment.CENTER);
 
-        grid.setItems(albumService.findPostByAuthorUsername(PrincipalUtil.getPrincipalName()));
+        grid.setItems(artistService.findAll());
         grid.setWidthFull();
 
-        grid.addComponentColumn(album -> {
+        grid.addComponentColumn(artist -> {
             Button button = new Button(new Icon(VaadinIcon.TRASH), evt -> {
-                Notification.show(album.getAlbumName() + " deleted");
-                albumService.deleteById(album.getId());
+                Notification.show(artist.getArtistName() + " deleted");
+                artistService.deleteById(artist.getId());
                 updateItems();
 
             });
@@ -66,27 +67,30 @@ public class ManagePostView extends VerticalLayout {
         });
 
 
-        grid.addColumn(Album::getId).setHeader("id").setSortable(true).setResizable(true);
-        grid.addColumn(Album::getAlbumName).setHeader("Album name:");
-        grid.addColumn(Album::getArtistName).setHeader("Artist name:");
-        grid.addColumn(Album::getReleaseYear).setHeader("Date of release:");
+        grid.addColumn(Artist::getId).setHeader("id").setSortable(true).setResizable(true);
+        grid.addColumn(Artist::getArtistName).setHeader("Album name:");
+        grid.addColumn(Artist::getHomeCountry).setHeader("Home Country:");
+        grid.addColumn(Artist::getStartingYear).setHeader("Date of release:");
+        grid.addColumn(Artist::getDetailedInfo).setHeader("Detailed Info");
+
+        grid.getColumns().forEach(col -> col.setAutoWidth(true));
 
         grid.asSingleSelect().addValueChangeListener(evt -> {
-         blogForm.setAlbum(evt.getValue());
+         artistForm.setArtist(evt.getValue());
         });
 
 
-        HorizontalLayout mainContent = new HorizontalLayout(grid,blogForm);
+        HorizontalLayout mainContent = new HorizontalLayout(grid, artistForm);
         mainContent.setSizeFull();
 
-        Button button = new Button("Add new album", evt -> {
+        Button button = new Button("Add New Artist", evt -> {
             Dialog dialog = new Dialog();
-            BlogForm dialogForm = new BlogForm(albumService, artistService, this);
+            ArtistForm dialogForm = new ArtistForm(albumService, artistService, this);
 
-            Album album = new Album();
+            Artist artist = new Artist();
             AppUser currentUser = appUserRepo.findByUsername(PrincipalUtil.getPrincipalName()).orElseThrow();
 
-            album.setAppUser(currentUser);
+            artist.setAppUser(currentUser);
 
             FileBuffer fileBuffer = new FileBuffer();
             Upload upload = new Upload(fileBuffer);
@@ -95,7 +99,7 @@ public class ManagePostView extends VerticalLayout {
                 InputStream fileData = fileBuffer.getInputStream();
                 String fileName = succeededEvent.getFileName();
                 /*album.setImagePath("./frontend/resources/images/" + fileName);*/
-                album.setImagePath("/images/" + fileName);
+                artist.setImagePath("/images/" + fileName);
                 BufferedImage bufferedImage;
                 try {
                     bufferedImage = ImageIO.read(fileData);
@@ -109,7 +113,7 @@ public class ManagePostView extends VerticalLayout {
 
             });
 
-            dialogForm.setAlbum(album);
+            dialogForm.setArtist(artist);
             dialog.add(dialogForm, upload);
             dialog.open();
         });
@@ -118,6 +122,6 @@ public class ManagePostView extends VerticalLayout {
 
     }
     public void updateItems(){
-        grid.setItems(albumService.findPostByAuthorUsername(PrincipalUtil.getPrincipalName()));
+        grid.setItems(artistService.findAll());
     }
 }

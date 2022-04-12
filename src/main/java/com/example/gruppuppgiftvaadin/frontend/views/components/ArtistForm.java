@@ -4,7 +4,7 @@ import com.example.gruppuppgiftvaadin.backend.entities.Album;
 import com.example.gruppuppgiftvaadin.backend.entities.Artist;
 import com.example.gruppuppgiftvaadin.backend.services.AlbumService;
 import com.example.gruppuppgiftvaadin.backend.services.ArtistService;
-import com.example.gruppuppgiftvaadin.frontend.views.ManageAlbum;
+import com.example.gruppuppgiftvaadin.frontend.views.ManageArtist;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -15,7 +15,7 @@ import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 
 
-public class BlogForm extends FormLayout {
+public class ArtistForm extends FormLayout {
 
     /*    TextField title = new TextField("Title");*/
     TextField albumName = new TextField("Album Name");
@@ -34,10 +34,10 @@ public class BlogForm extends FormLayout {
     AlbumService albumService;
     ArtistService artistService;
 
-    ManageAlbum manageAlbum;
+    ManageArtist manageArtist;
 
-    public BlogForm(AlbumService albumService, ArtistService artistService, ManageAlbum manageAlbum) {
-        this.manageAlbum = manageAlbum;
+    public ArtistForm(AlbumService albumService, ArtistService artistService, ManageArtist manageArtist) {
+        this.manageArtist = manageArtist;
         this.albumService = albumService;
         this.artistService = artistService;
 
@@ -52,9 +52,9 @@ public class BlogForm extends FormLayout {
         add(albumName, artistName,/* homeCountry, startingYear,*/ releaseYear, detailedInfo, saveButton);
     }
 
-    public void setAlbum(Album album) {
-        if (album != null) {
-            albumBinder.setBean(album);
+    public void setArtist(Artist artist) {
+        if (artist != null) {
+            artistBinder.setBean(artist);
             setVisible(true);
         } else {
             setVisible(false);
@@ -62,17 +62,17 @@ public class BlogForm extends FormLayout {
     }
 
     private void handleSave() {
-        Album album = albumBinder.validate().getBinder().getBean();
+        Artist artist = artistBinder.validate().getBinder().getBean();
 
-        if (album.getId() == 0)
-            albumService.saveAlbum(album);
+        if (artist.getId() == 0)
+            artistService.saveArtist(artist);
         else
-            albumService.updateAlbum(album.getId(), album);
+            artistService.updateArtist(artist.getId(), artist);
 
-        setAlbum(null);
+        setArtist(null);
 
 
-        manageAlbum.updateItems();
+        manageArtist.updateItems();
         this.getParent().ifPresent(component -> {
             if (component instanceof Dialog) {
                 ((Dialog) component).close();
