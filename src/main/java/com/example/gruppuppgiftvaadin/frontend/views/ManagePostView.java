@@ -45,15 +45,14 @@ public class ManagePostView extends VerticalLayout {
         this.blogForm = new BlogForm(albumService,artistService,this);
         setAlignItems(Alignment.CENTER);
 
-        grid.setItems(albumService.findPostByAuthorUsername(PrincipalUtil.getPrincipalName()));
+        grid.setItems(albumService.findAll());
         grid.setWidthFull();
 
         grid.addComponentColumn(album -> {
             Button button = new Button(new Icon(VaadinIcon.TRASH), evt -> {
-                Notification.show(album.getAlbumName() + " deleted");
-                albumService.deleteById(album.getId());
-                updateItems();
-
+                    Notification.show(album.getAlbumName() + " deleted");
+                    albumService.deleteById(album.getId());
+                    updateItems();
             });
 
             button.addThemeVariants(

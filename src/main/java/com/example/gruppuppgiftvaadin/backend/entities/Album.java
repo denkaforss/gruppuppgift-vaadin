@@ -62,11 +62,10 @@ public class Album {
     private String detailedInfo;
 
 
-    public Album(String albumName, LocalDate releaseYear/*, Set<Songs> songsSet*/, Artist artist, AppUser appUser, String detailedInfo, String imagePath, String artistName) {
+    public Album(String albumName, LocalDate releaseYear, Artist artist, String detailedInfo, String imagePath, String artistName) {
         this.albumName = albumName;
         this.releaseYear = releaseYear;
         this.artist = artist;
-        this.appUser = appUser;
         this.detailedInfo = detailedInfo;
         this.imagePath = imagePath;
         this.artistName = artistName;
