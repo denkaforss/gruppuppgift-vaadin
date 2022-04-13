@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
+@Table
 public class Artist {
 
     @Id
