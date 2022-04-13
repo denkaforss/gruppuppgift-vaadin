@@ -2,6 +2,7 @@ package com.example.gruppuppgiftvaadin.frontend.views.components;
 
 import com.example.gruppuppgiftvaadin.backend.entities.Album;
 import com.example.gruppuppgiftvaadin.backend.entities.Artist;
+import com.example.gruppuppgiftvaadin.backend.security.PrincipalUtil;
 import com.example.gruppuppgiftvaadin.backend.services.AlbumService;
 import com.example.gruppuppgiftvaadin.backend.services.ArtistService;
 import com.example.gruppuppgiftvaadin.frontend.views.ManageArtist;
@@ -9,10 +10,13 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
+
+import java.util.Objects;
 
 
 public class ArtistForm extends FormLayout {
@@ -64,13 +68,16 @@ public class ArtistForm extends FormLayout {
     private void handleSave() {
         Artist artist = artistBinder.validate().getBinder().getBean();
 
-        if (artist.getId() == 0)
-            artistService.saveArtist(artist);
-        else
-            artistService.updateArtist(artist.getId(), artist);
+        if (!Objects.equals(PrincipalUtil.getPrincipalName(), "admin")) {
+            Notification.show("You do not have access to this feature.");
+        } else {
 
-        setArtist(null);
+            if (artist.getId() == 0)
+                artistService.saveArtist(artist);
+            else
+                artistService.updateArtist(artist.getId(), artist);
 
+            setArtist(null);
 
         manageArtist.updateItems();
         this.getParent().ifPresent(component -> {
@@ -78,6 +85,7 @@ public class ArtistForm extends FormLayout {
                 ((Dialog) component).close();
             }
         });
+    }
     }
 
 }

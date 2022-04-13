@@ -20,6 +20,7 @@ import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.FileBuffer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.aspectj.weaver.ast.Not;
 
 import javax.annotation.security.PermitAll;
 import javax.imageio.ImageIO;
@@ -27,9 +28,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 @PageTitle("Manage Albums | MythicTunes")
-@Route(value = "/manageposts",layout = Header.class)
+@Route(value = "/managealbums",layout = Header.class)
 @PermitAll
 /*@AnonymousAllowed*/
 public class ManageAlbum extends VerticalLayout {
@@ -52,8 +54,12 @@ public class ManageAlbum extends VerticalLayout {
 
         grid.addComponentColumn(album -> {
             Button button = new Button(new Icon(VaadinIcon.TRASH), evt -> {
-                albumService.deleteById(album.getId());
-                Notification.show(album.getAlbumName() + " deleted");
+                if (Objects.equals(PrincipalUtil.getPrincipalName(), "admin")) {
+                    albumService.deleteById(album.getId());
+                    Notification.show(album.getAlbumName() + " deleted");
+                } else {
+                    Notification.show("You do not have access to this feature.");
+                }
                 updateItems();
 
             });

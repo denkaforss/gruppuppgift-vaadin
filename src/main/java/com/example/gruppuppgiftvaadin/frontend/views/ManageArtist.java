@@ -29,6 +29,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 @PageTitle("Manage Artists | MythicTunes")
 @Route(value = "/manageartists",layout = Header.class)
@@ -55,21 +56,26 @@ public class ManageArtist extends VerticalLayout {
 
         grid.addComponentColumn(artist -> {
             Button button = new Button(new Icon(VaadinIcon.TRASH), evt -> {
-                Dialog warning = new Dialog();
-                warning.add(
-                        new H1("Warning"),
-                        new Paragraph("If you remove an Artist all albums related to this artis will also be removed"),
-                        new HorizontalLayout(
-                                new Button("Confirm", confirmed -> {
-                                    artistService.deleteById(artist.getId());
-                                    Notification.show(artist.getArtistName() + " deleted");
-                                    updateItems();
-                                    warning.close();
-                                }),
-                                new Button("Close", closed -> warning.close())
-                        )
-                );
-                warning.open();
+                if (PrincipalUtil.getPrincipalName().equals("admin")){
+                    Dialog warning = new Dialog();
+                    warning.add(
+                            new H1("Warning"),
+                            new Paragraph("If you remove an Artist all albums related to this artis will also be removed"),
+                            new HorizontalLayout(
+                                    new Button("Confirm", confirmed -> {
+                                        artistService.deleteById(artist.getId());
+                                        Notification.show(artist.getArtistName() + " deleted");
+                                        updateItems();
+                                        warning.close();
+                                    }),
+                                    new Button("Close", closed -> warning.close())
+                            )
+                    );
+                    warning.open();
+                } else {
+                    Notification.show("You do not have access to this feature.");
+                }
+
             });
 
             button.addThemeVariants(
@@ -79,6 +85,7 @@ public class ManageArtist extends VerticalLayout {
             );
 
             return button;
+
         });
 
 
