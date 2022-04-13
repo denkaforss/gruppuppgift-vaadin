@@ -19,7 +19,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootApplication
-/*@Theme(themeClass = Lumo.class, variant = Lumo.DARK)*/
 @Theme(value = "custom-theme", variant = "light")
 public class GruppuppgiftVaadinApplication implements AppShellConfigurator {
 

@@ -23,6 +23,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         AppUser appUser = appUserRepo.findByUsername(username).orElseThrow();
 
         return new User(appUser.getUsername(), appUser.getPassword(), List.of());
-
     }
 }
