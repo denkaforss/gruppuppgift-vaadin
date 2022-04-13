@@ -23,4 +23,5 @@ public class PrincipalUtil {
                         .getCurrent()
                         .getHttpServletRequest(), null, null);
     }
+
 }
