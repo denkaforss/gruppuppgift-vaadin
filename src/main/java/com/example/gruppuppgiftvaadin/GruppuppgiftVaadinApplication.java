@@ -32,7 +32,8 @@ public class GruppuppgiftVaadinApplication implements AppShellConfigurator {
         return args -> {
             AppUser admin = new AppUser("admin", "password");
             AppUser guest = new AppUser("guest", "password");
-            appUserRepo.saveAll(List.of(admin, guest));
+            AppUser staff = new AppUser("staff", "password");
+            appUserRepo.saveAll(List.of(admin, guest, staff));
 
 
             Artist avantasia = new Artist("Avantasia", LocalDate.of(1999, 4, 14), "Germany", "Avantasia är ett power metalprojekt skapat av Edguys sångare Tobias Sammet. Hittills har sju skivor givits ut varav fem är album The Metal Opera Part I, The Metal Opera Part II, Lost In Space part I EP, Lost In Space Part II EP", "/images/avantasia-band.jpg");

@@ -68,7 +68,7 @@ public class ArtistForm extends FormLayout {
     private void handleSave() {
         Artist artist = artistBinder.validate().getBinder().getBean();
 
-        if (!Objects.equals(PrincipalUtil.getPrincipalName(), "admin")) {
+        if (!Objects.equals(PrincipalUtil.getPrincipalName(), "admin") && !Objects.equals(PrincipalUtil.getPrincipalName(), "staff")) {
             Notification.show("You do not have access to this feature.");
         } else {
 

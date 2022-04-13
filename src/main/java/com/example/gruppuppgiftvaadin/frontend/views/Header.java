@@ -42,7 +42,7 @@ public class Header extends AppLayout {
         userLayout.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
 
         if (PrincipalUtil.isLoggedIn()) {
-            if (PrincipalUtil.getPrincipalName().equals("admin")) {
+            if (PrincipalUtil.getPrincipalName().equals("admin") || PrincipalUtil.getPrincipalName().equals("staff")) {
                 tabs.add(new Tab(managePostLink), new Tab(manageArtists));
             }
             addToNavbar(new HorizontalLayout(userLayout));
