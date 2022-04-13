@@ -96,7 +96,7 @@ public class ManageAlbum extends VerticalLayout {
             Album album = new Album();
             AppUser currentUser = appUserRepo.findByUsername(PrincipalUtil.getPrincipalName()).orElseThrow();
 
-            album.setAppUser(currentUser);
+            /*album.setAppUser(currentUser);*/
 
             FileBuffer fileBuffer = new FileBuffer();
             Upload upload = new Upload(fileBuffer);

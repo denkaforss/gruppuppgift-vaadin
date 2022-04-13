@@ -29,7 +29,7 @@ public class GruppuppgiftVaadinApplication implements AppShellConfigurator {
     @Bean
     CommandLineRunner init(ArtistRepo artistRepo, AlbumRepo albumRepo, SongsRepo songsRepo, AppUserRepo appUserRepo) {
         return args -> {
-         /*   AppUser admin = new AppUser("admin", "password");
+            /*AppUser admin = new AppUser("admin", "password");
             AppUser guest = new AppUser("guest", "password");
             AppUser staff = new AppUser("staff", "password");
             appUserRepo.saveAll(List.of(admin, guest, staff));
