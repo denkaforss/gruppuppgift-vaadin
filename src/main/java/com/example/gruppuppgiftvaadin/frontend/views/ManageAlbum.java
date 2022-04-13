@@ -4,6 +4,7 @@ import com.example.gruppuppgiftvaadin.backend.entities.Album;
 import com.example.gruppuppgiftvaadin.backend.entities.AppUser;
 import com.example.gruppuppgiftvaadin.backend.repositories.AppUserRepo;
 import com.example.gruppuppgiftvaadin.backend.security.PrincipalUtil;
+import com.example.gruppuppgiftvaadin.backend.security.SecurityUtils;
 import com.example.gruppuppgiftvaadin.backend.services.AlbumService;
 import com.example.gruppuppgiftvaadin.backend.services.ArtistService;
 import com.example.gruppuppgiftvaadin.frontend.views.components.BlogForm;
@@ -18,10 +19,12 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.FileBuffer;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.router.NotFoundException;
 import com.vaadin.flow.router.Route;
 import org.springframework.security.access.annotation.Secured;
 
-import javax.annotation.security.PermitAll;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -29,9 +32,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @Route(value = "/manageposts",layout = Header.class)
-@Secured("Role_admin")
+@Secured("ROLE_Admin")
 /*@AnonymousAllowed*/
-public class ManageAlbum extends VerticalLayout {
+public class ManageAlbum extends VerticalLayout implements BeforeEnterObserver {
 
     Grid<Album> grid = new Grid<>(Album.class,false);
     AlbumService albumService;
@@ -122,5 +125,14 @@ public class ManageAlbum extends VerticalLayout {
     }
     public void updateItems(){
         grid.setItems(albumService.findAll());
+    }
+
+    public void beforeEnter(BeforeEnterEvent event) {
+        if(!SecurityUtils.isAccessGranted(event.getNavigationTarget()))
+            if (SecurityUtils.isUserLoggedIn()) {
+                event.rerouteToError(NotFoundException.class);
+            } else {
+                event.rerouteTo(LoginView.class);
+            }
     }
 }

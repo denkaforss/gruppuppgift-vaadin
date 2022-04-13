@@ -22,4 +22,7 @@ public class UserRoleToPrivilege {
         this.role = role;
         this.privilege = privilege;
     }
+
+    public UserRoleToPrivilege() {
+    }
 }

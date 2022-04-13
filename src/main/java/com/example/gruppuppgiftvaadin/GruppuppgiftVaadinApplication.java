@@ -1,10 +1,7 @@
 package com.example.gruppuppgiftvaadin;
 
 import com.example.gruppuppgiftvaadin.backend.entities.*;
-import com.example.gruppuppgiftvaadin.backend.repositories.AlbumRepo;
-import com.example.gruppuppgiftvaadin.backend.repositories.AppUserRepo;
-import com.example.gruppuppgiftvaadin.backend.repositories.ArtistRepo;
-import com.example.gruppuppgiftvaadin.backend.repositories.SongsRepo;
+import com.example.gruppuppgiftvaadin.backend.repositories.*;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
 import org.springframework.boot.CommandLineRunner;
@@ -25,23 +22,36 @@ public class GruppuppgiftVaadinApplication implements AppShellConfigurator {
     }
 
     @Bean
-    CommandLineRunner init(ArtistRepo artistRepo, AlbumRepo albumRepo, SongsRepo songsRepo, AppUserRepo appUserRepo) {
+    CommandLineRunner init(
+            ArtistRepo artistRepo,
+            AlbumRepo albumRepo,
+            SongsRepo songsRepo,
+            AppUserRepo appUserRepo,
+            UserRoleRepo userRoleRepo,
+            UserPrivRepo userPrivRepo,
+            UserToRoleRepo userToRoleRepo,
+            UserRoleToPrivRepo userRoleToPrivRepo
+            ) {
         return args -> {
             AppUser admin = new AppUser("admin", "password");
             AppUser guest = new AppUser("guest", "password");
             appUserRepo.saveAll(List.of(admin, guest));
 
-            UserRole adminRole = new UserRole("admin");
-            UserRole guestRole = new UserRole("guest");
-
-            UserToRole adminToAdmin = new UserToRole(admin, adminRole);
-            UserToRole guestToGuest = new UserToRole(guest, guestRole);
+            UserRole adminRole = new UserRole("Admin");
+            UserRole guestRole = new UserRole("User");
+            userRoleRepo.saveAll(List.of(adminRole, guestRole));
 
             UserPrivilege adminPrivilege = new UserPrivilege("canReadAdmin");
             UserPrivilege guestPrivilege = new UserPrivilege("canReadGuest");
+            userPrivRepo.saveAll(List.of(adminPrivilege, guestPrivilege));
 
-            UserRoleToPrivilege adminRoleToPrivilege = new UserRoleToPrivilege(adminRole, adminPrivilege);
-            UserRoleToPrivilege guestRoleToPrivilege = new UserRoleToPrivilege(guestRole, guestPrivilege);
+            UserToRole adminToAdmin = new UserToRole(admin, adminRole);
+            UserToRole guestToGuest = new UserToRole(guest, guestRole);
+            userToRoleRepo.saveAll(List.of(adminToAdmin, guestToGuest));
+
+            UserRoleToPrivilege adminToAdminPriv = new UserRoleToPrivilege(adminRole, adminPrivilege);
+            UserRoleToPrivilege guestToGuestPriv = new UserRoleToPrivilege(guestRole, guestPrivilege);
+            userRoleToPrivRepo.saveAll(List.of(adminToAdminPriv, guestToGuestPriv));
 
 
             Artist avantasia = new Artist("Avantasia", LocalDate.of(1999, 4, 14), "Germany", "Avantasia är ett power metalprojekt skapat av Edguys sångare Tobias Sammet. Hittills har sju skivor givits ut varav fem är album The Metal Opera Part I, The Metal Opera Part II, Lost In Space part I EP, Lost In Space Part II EP", "/images/avantasia-band.jpg");
@@ -62,7 +72,7 @@ public class GruppuppgiftVaadinApplication implements AppShellConfigurator {
             Songs songs2 = new Songs("Shadows Inside", 236, artist2, album2, admin);
 
             Songs songs3 = new Songs("Third song", 149, avantasia, album3, admin);
-            
+
             Songs songs4 = new Songs("Fourth song", 149, artist4, album4, admin);
 
 

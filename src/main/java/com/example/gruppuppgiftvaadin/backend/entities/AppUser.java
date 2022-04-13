@@ -51,6 +51,7 @@ public class AppUser {
 
      @OneToMany(mappedBy = "user")
      @Getter
+     @Setter
      private List<UserToRole> userToRoles;
 
     public AppUser() {}

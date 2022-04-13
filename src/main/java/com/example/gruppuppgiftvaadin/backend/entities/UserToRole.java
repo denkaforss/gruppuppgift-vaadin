@@ -23,4 +23,7 @@ public class UserToRole {
         this.user = user;
         this.role = role;
     }
+
+    public UserToRole() {
+    }
 }

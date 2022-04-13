@@ -19,4 +19,8 @@ public class UserPrivilege {
     public UserPrivilege(String privilegeName) {
         this.privilegeName = privilegeName;
     }
+
+    public UserPrivilege() {
+
+    }
 }
