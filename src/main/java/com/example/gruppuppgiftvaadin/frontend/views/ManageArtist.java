@@ -23,17 +23,17 @@ import com.vaadin.flow.component.upload.receivers.FileBuffer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Objects;
 
 @PageTitle("Manage Artists | MythicTunes")
 @Route(value = "/manageartists",layout = Header.class)
-@PermitAll
+@RolesAllowed({"ADMIN", "STAFF"})
+/*@PermitAll*/
 /*@AnonymousAllowed*/
 public class ManageArtist extends VerticalLayout {
 

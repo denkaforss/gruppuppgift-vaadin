@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -24,8 +23,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         AppUser appUser = appUserRepo.findByUsername(username).orElseThrow();
 
-        if (Objects.equals(appUser.getUsername(), "admin")) {
-            return new User(appUser.getUsername(), appUser.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_ADMIN")));
+        switch (appUser.getUsername()) {
+            case "admin":
+                return new User(appUser.getUsername(), appUser.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_ADMIN")));
+            case "staff":
+                return new User(appUser.getUsername(), appUser.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_STAFF")));
+            case "guest":
+                return new User(appUser.getUsername(), appUser.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_GUEST")));
         }
 
         return new User(appUser.getUsername(), appUser.getPassword(), List.of());

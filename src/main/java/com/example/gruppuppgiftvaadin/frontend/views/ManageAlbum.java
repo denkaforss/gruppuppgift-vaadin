@@ -20,9 +20,8 @@ import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.FileBuffer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import org.aspectj.weaver.ast.Not;
 
-import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -32,7 +31,8 @@ import java.util.Objects;
 
 @PageTitle("Manage Albums | MythicTunes")
 @Route(value = "/managealbums",layout = Header.class)
-@PermitAll
+@RolesAllowed({"ADMIN", "STAFF"})
+/*@PermitAll*/
 /*@AnonymousAllowed*/
 public class ManageAlbum extends VerticalLayout {
 
