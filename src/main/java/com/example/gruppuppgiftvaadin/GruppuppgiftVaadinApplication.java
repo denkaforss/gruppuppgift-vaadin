@@ -1,22 +1,9 @@
 package com.example.gruppuppgiftvaadin;
 
-import com.example.gruppuppgiftvaadin.backend.entities.Album;
-import com.example.gruppuppgiftvaadin.backend.entities.AppUser;
-import com.example.gruppuppgiftvaadin.backend.entities.Artist;
-import com.example.gruppuppgiftvaadin.backend.entities.Songs;
-import com.example.gruppuppgiftvaadin.backend.repositories.AlbumRepo;
-import com.example.gruppuppgiftvaadin.backend.repositories.AppUserRepo;
-import com.example.gruppuppgiftvaadin.backend.repositories.ArtistRepo;
-import com.example.gruppuppgiftvaadin.backend.repositories.SongsRepo;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @SpringBootApplication
 @Theme(value = "custom-theme", variant = "light")
@@ -26,7 +13,7 @@ public class GruppuppgiftVaadinApplication implements AppShellConfigurator {
         SpringApplication.run(GruppuppgiftVaadinApplication.class, args);
     }
 
-    @Bean
+    /*@Bean
     CommandLineRunner init(ArtistRepo artistRepo, AlbumRepo albumRepo, SongsRepo songsRepo, AppUserRepo appUserRepo) {
         return args -> {
             AppUser admin = new AppUser("admin", "password");
@@ -75,5 +62,5 @@ public class GruppuppgiftVaadinApplication implements AppShellConfigurator {
             albumRepo.saveAll(List.of(album, album2, album3, album4));
             songsRepo.saveAll(List.of(songs2, songs3, songs4));
         };
-    }
+    }*/
 }
